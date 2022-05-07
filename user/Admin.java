@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import user.User;
 
-class Admin extends Employee{
+class Admin extends User{
     /**
      * Default Constructor
      */
@@ -14,13 +15,6 @@ class Admin extends Employee{
      */
     public Admin(String ID,String pass){
         super(ID,pass);
-    }
-
-    /**
-     * Returns ID of Admin
-     */
-    public void getID(){
-        return userID;
     }
 
     /**
@@ -56,8 +50,8 @@ class Admin extends Employee{
      * @param employee Employee which is will be set working days
      * @param working_days Boolean ArrayList for 7 Days
      */
-    public void setWorkingDays(Employee employee,ArrayList<Boolean> working_days){
-        employee.workingDays = working_days;
+    public void setWorkDays(Employee employee,ArrayList<Boolean> working_days){
+        employee.setWorkingDays(working_days);
     }
     /**
      * 
@@ -65,7 +59,7 @@ class Admin extends Employee{
      * @return Working Days
      */
     public ArrayList<Boolean> getWorkingDays(Employee employee){
-        return employee.workingDays;
+        return employee.getWorkingDays();
     }
     /**
      * 
@@ -73,7 +67,7 @@ class Admin extends Employee{
      * @param shift_days Boolean ArrayList for 7 Days
      */
     public void setNightShifts(Employee employee,ArrayList<Boolean> shift_days){
-        employee.nightShifts = shift_days;
+        employee.setNightShifts(shift_days);
     }
 
     /**
@@ -82,15 +76,15 @@ class Admin extends Employee{
      * @return Night Shift Days
      */
     public ArrayList<Boolean> getNightShifts(Employee employee){
-        return employee.nightShifts;
+        return employee.getNightShifts;
     }
     /**
      * 
      * @param employee Guilty Employee
      * @param forensicCase String of Case
      */
-    public void AssignForensic(Employee employee,String forensicCase){
-        employee.forensicCases.add(forensicCase);
+    public void AssignForensic(Employee employee,ArrayList<String> forensicCase){
+        employee.setForensicCases(forensicCase);
     }
     /**
      * 
@@ -98,7 +92,7 @@ class Admin extends Employee{
      * @return Employee's Case
      */
     public ArrayList<String> getForensic(Employee employee){
-        return employee.forensicCases;
+        return employee.getForensicCases();
     }
 
 }
