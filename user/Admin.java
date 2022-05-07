@@ -76,7 +76,7 @@ class Admin extends User{
      * @return Night Shift Days
      */
     public ArrayList<Boolean> getNightShifts(Employee employee){
-        return employee.getNightShifts;
+        return employee.getNightShifts();
     }
     /**
      * 
