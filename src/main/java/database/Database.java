@@ -96,8 +96,9 @@ public class Database
     private boolean loadUserList()
     {
         addUser(new Admin("a", "a" , "a"));
-        addUser(new Doctor("d", "d" , "d"));
-        addUser(new Nurse("n", "n" , "n"));
+        //added proficiency data field to subclasses of Employee class
+        addUser(new Doctor("d", "d" , "d", "proficiency"));
+        addUser(new Nurse("n", "n" , "n", "proficiency"));
         addUser(new Patient("p", "p" , "p", 1, 1, 1, "A"));
 
         return true;

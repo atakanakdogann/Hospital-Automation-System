@@ -38,11 +38,12 @@ public class Appointments {
     public Appointments(Patient patient, Doctor doctor, Date date) {
     }
 
-    public Patient getPatient(){
-        return null;
+    public Patient getPatient() {
+        return patient;
     }
-    public Patient putPatient(Patient newPatient){
-        return null;
+
+    public void putPatient(Patient newPatient){
+        patient = newPatient;
     }
 
 }

@@ -80,13 +80,14 @@ public class ActionScreen
         ((Admin) user).setNightShifts();
     }
 
-    public void nurseTestPatient(User user)
+    //TODO: please re-implement this method according to changes in Examination class
+    /*public void nurseTestPatient(User user)
     {
         if(!(user instanceof Nurse))
             return;
 
         ((Nurse) user).testPatient();
-    }
+    }*/
 
     public void nurseViewTests(User user)
     {

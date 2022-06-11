@@ -53,11 +53,16 @@ public class Admin extends User
 
         if(userType == 0)
             result = Database.db.addUser(new Admin(id, password, name));
-        else if(userType == 1)
-            result = Database.db.addUser(new Doctor(id, password, name));
-        else if(userType == 2)
-            result = Database.db.addUser(new Nurse(id, password, name));
-
+        else if(userType == 1){
+            System.out.print("Proficiency: ");
+            String proficiency = scanner.nextLine();
+            result = Database.db.addUser(new Doctor(id, password, name, proficiency));
+        }
+        else if(userType == 2){
+            System.out.print("Proficiency: ");
+            String proficiency = scanner.nextLine();
+            result = Database.db.addUser(new Nurse(id, password, name, proficiency));
+        }
         if(result == false)
         {
             System.out.println("\nError: User already exists");

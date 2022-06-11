@@ -1,5 +1,7 @@
 package main.java.user;
 
+import main.java.HelperClass.Examination;
+
 import java.util.ArrayList;
 
 /**
@@ -12,18 +14,21 @@ public class Nurse extends Employee
      * @param ID National identity of the nurse
      * @param pass Password of the nurse
      * @param name Name of the nurse
+     * @param proficiency medical proficiency of the nurse
      */
-    public Nurse(String ID, String pass, String name)
+    public Nurse(String ID, String pass, String name, String proficiency)
     {
-        super(ID, pass, name, User.userTypeNurse);
+        super(ID, pass, name, User.userTypeNurse, proficiency);
     }
 
     /**
      * Executes test phases and assigns the test results to the patient
+     * @param medicalTest
+     * @param result
      */
-    public void testPatient()
+    public void testPatient(Examination medicalTest, String result)
     {
-
+        medicalTest.setResult(result);
     }
 
     /**

@@ -7,6 +7,12 @@ import java.util.ArrayList;
  * @author Ahmet Kadir Aksu
  */
 public class Employee extends User {
+    private String proficiency;
+
+    public String getProficiency() {
+        return proficiency;
+    }
+
     private ArrayList<Boolean> workingDays;
     private ArrayList<Boolean> nightShifts;
     private ArrayList<String> forensicCases;
@@ -24,13 +30,12 @@ public class Employee extends User {
         }
     }
 
-    public Employee(String ID, String pass, String name, String userType) {
+    public Employee(String ID, String pass, String name, String userType, String proficiency) {
         super(ID, pass, name, userType);
-
+        this.proficiency = proficiency;
         workingDays = new ArrayList<Boolean>(WEEKDAY_CAPACITY);
         nightShifts = new ArrayList<Boolean>(WEEKDAY_CAPACITY);
         forensicCases = new ArrayList<>();
-
         for (int i = 0; i < WEEKDAY_CAPACITY; i++){
             workingDays.add(false);
             nightShifts.add(false);

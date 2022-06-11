@@ -1,5 +1,8 @@
 package main.java.user;
 
+import main.java.HelperClass.Examination;
+import main.java.HelperClass.PatientRoom;
+
 import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,46 +29,120 @@ public class Doctor extends Employee{
     public Doctor(){
 
     }
-    public Doctor(String id, String password, String name){
-        super(id, password, name, User.userTypeDoctor);
+
+    /**
+     * Creates a Doctor object with the given ID, password and name
+     * @param id National identity of the doctor
+     * @param password Password of the doctor
+     * @param name Name of the doctor
+     * @param proficiency medical proficiency of the doctor
+     */
+    public Doctor(String id, String password, String name, String proficiency){
+        super(id, password, name, User.userTypeDoctor, proficiency);
     }
 
+    /**
+     * creates appointment for given patient at given date
+     * @param patient
+     * @param date
+     */
     public void createAppointment(Patient patient, Date date){
         Appointments creation = new Appointments(patient, this, date);
         patientAppointments.add(creation);
-       // patient.addAppointment(creation);
+        patient.addAppointment(creation);
     }
 
-    public void writePrescription(Patient patient){
-        //setPrescription
+    /**
+     * create medical test for given patient
+     * @param patient
+     * @param proficiency
+     * @param testName
+     */
+    public void createExamination(Patient patient, String proficiency, String testName){
+        patient.testResults.add(new Examination(this, patient, proficiency, testName));
     }
 
+    /**
+     *
+     * @param patient
+     * @param prescription
+     */
+    public void writePrescription(Patient patient, String prescription){
+        patient.prescriptions.add(prescription);
+    }
+
+    /**
+     * medical informations of given patient
+     * @param patient
+     * @return string format of history
+     */
     public String patientHistory(Patient patient){
-        //return patient.getMedicalHistory();
-        return new String();
+        return patient.getMedicalHistory();
     }
 
+    /**
+     * add new symptom for patient
+     * @param patient
+     * @param symptom
+     */
     public void setSymptoms(Patient patient, String symptom){
         patient.addSymptom(symptom);
     }
 
-    public String[] getSymptoms(Patient patient){
-        return new String[3];
+    /**
+     * get symptoms of the patient
+     * @param patient
+     * @return
+     */
+    public Queue<String> getSymptoms(Patient patient){
+        return patient.getSymptoms();
     }
 
+    /**
+     * set illness of the patient
+     * @param patient
+     * @param illness
+     */
     public void setIllness(Patient patient, String illness){
         patient.addIllness(illness);
     }
 
+    /**
+     * getter method for patient's illnesses
+     * @param patient
+     * @return
+     */
     public ArrayList<String> getIllness(Patient patient){
-        return new ArrayList<>();
+        return patient.getIllness();
     }
 
+    /**
+     * add allergy to the patient
+     * @param patient
+     * @param allergy
+     */
     public void setAllergy(Patient patient, String allergy){
-        //
+        //could change according to implementation of patient class
+        patient.allergies.add(allergy);
     }
 
+    /**
+     * get allergies of the patient
+     * @param patient
+     * @return
+     */
     public ArrayList<String> getAllergies(Patient patient){
-        return new ArrayList<>();
+        //could change according to implementation of patient class
+        return patient.allergies;
+    }
+
+    /**
+     * give a room at given location to hospitalize patient
+     * @param patient patient to hospitalize
+     * @param x x-axis location
+     * @param y y-axis location
+     */
+    public void hospitalizePatient(Patient patient, double x, double y){
+        PatientRoom patientRoom = new PatientRoom(x, y, patient);
     }
 }

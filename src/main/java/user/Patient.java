@@ -1,17 +1,24 @@
  package main.java.user;
 
-import java.util.ArrayList;
+import main.java.HelperClass.Examination;
+import main.java.HelperClass.PatientRoom;
 
-public class Patient extends User{
+import java.util.ArrayList;
+import java.util.Queue;
+
+ public class Patient extends User{
+    private PatientRoom room;
     private int age;
     private int weight;
     private int height;
     private String bloodType;
-    private ArrayList<String> prescriptions = new ArrayList<String>();
-    private ArrayList<String> testResults = new ArrayList<String>();
-    private ArrayList<String> medicineRequirements = new ArrayList<String>();
-    private ArrayList<String> allergies = new ArrayList<String>();
-    private ArrayList<String> illnesses = new ArrayList<String>();
+    protected Queue<Appointments> appointments;
+    protected Queue<String> symptoms;
+    protected ArrayList<String> prescriptions = new ArrayList<>();
+    protected ArrayList<Examination> testResults = new ArrayList<>();
+    protected ArrayList<String> medicineRequirements = new ArrayList<>();
+    protected ArrayList<String> allergies = new ArrayList<>();
+    protected ArrayList<String> illnesses = new ArrayList<>();
 
     public Patient(String id, String password, String name, int age, int weight, int height, String bloodType) {
         super(id, password, name, User.userTypePatient);
@@ -21,7 +28,20 @@ public class Patient extends User{
         this.bloodType = bloodType;
     }
 
-    public void putAge(int theAge) {
+    /**
+     * this method assign a hospital room for patient
+     * only a doctor could be assign a room for patient
+     * @param room
+     */
+    public void setRoom(PatientRoom room) {
+        this.room = room;
+    }
+
+     public Queue<String> getSymptoms() {
+         return symptoms;
+     }
+
+     public void putAge(int theAge) {
         age = theAge;
     }
 
@@ -51,6 +71,20 @@ public class Patient extends User{
 
     public String getBloodType() {
         return bloodType;
+    }
+
+     /**
+      * method to get medical history of patient
+      * @return patient's informations as a string
+      */
+    public String getMedicalHistory(){
+        String history = new String();
+        history = history + "age: " + getAge();
+        history = history + "\nweight: " + getWeight();
+        history = history + "\nheight: " + getHeight();
+        history = history + "\nblood type: " + getBloodType();
+
+        return history;
     }
 /*
     public boolean addAppointment(Appointments newAppointment) {
@@ -153,19 +187,26 @@ public class Patient extends User{
         return str;
     }
 
-    public String getIllness() {
+    public ArrayList<String> getIllness() {
         String str = "";
 
         // illnesses[];
         //  Empty Method
 
-        return str;
+        return illnesses;
     }
     public void addIllness(String illness) {
+        illnesses.add(illness);
     }
 
     public void addSymptom(String symptom) {
     }
 
-
+     /**
+      * doctor could add new appointment via this method
+      * @param creation an appointment
+      */
+    public void addAppointment(Appointments creation) {
+        appointments.offer(creation);
+    }
 }
