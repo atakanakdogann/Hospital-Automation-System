@@ -52,6 +52,21 @@ public class Employee extends User {
         forensicCases = _forensicCases;
     }
 
+    public void viewNightShifts()
+    {
+
+    }
+
+    public void viewWorkingDays()
+    {
+
+    }
+
+    public void viewForensicCases()
+    {
+
+    }
+
     /**
      * Sets the working days of this {@code Employee} for one week.
      *

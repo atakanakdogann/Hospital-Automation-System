@@ -21,14 +21,9 @@ public class Nurse extends Employee
         super(ID, pass, name, User.userTypeNurse, proficiency);
     }
 
-    /**
-     * Executes test phases and assigns the test results to the patient
-     * @param medicalTest
-     * @param result
-     */
-    public void testPatient(Examination medicalTest, String result)
+    public void testPatient()
     {
-        medicalTest.setResult(result);
+
     }
 
     /**
@@ -37,5 +32,15 @@ public class Nurse extends Employee
     public void viewTestsToBeDone()
     {
 
+    }
+
+    /**
+     * Executes test phases and assigns the test results to the patient
+     * @param medicalTest
+     * @param result
+     */
+    public void testPatient(Examination medicalTest, String result)
+    {
+        medicalTest.setResult(result);
     }
 }

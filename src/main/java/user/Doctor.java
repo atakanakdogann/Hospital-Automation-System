@@ -144,4 +144,59 @@ public class Doctor extends Employee{
     public void hospitalizePatient(Patient patient, double x, double y){
         PatientRoom patientRoom = new PatientRoom(x, y, patient);
     }
+
+    public void createAppointment()
+    {
+
+    }
+
+    public void writePrescription()
+    {
+
+    }
+
+    public void viewPatientHistory()
+    {
+
+    }
+
+    public void viewAllergies()
+    {
+
+    }
+
+    public void addAllergies()
+    {
+
+    }
+
+    public void viewSymptoms()
+    {
+
+    }
+
+    public void addSymptoms()
+    {
+
+    }
+
+    public void viewIllness()
+    {
+
+    }
+
+    public void addIllness()
+    {
+
+    }
+
+    public void enterTestResults()
+    {
+
+    }
+
+    public void hospitalizePatient()
+    {
+
+    }
 }
