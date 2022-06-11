@@ -35,8 +35,29 @@ public class MenuManager
     private static final String buttonLabelAdminSetWorkingDays = "Set Working Days";
     private static final String buttonLabelAdminSetNightShift = "Set Night Shift";
 
+    private static final String buttonLabelEmployeeViewNightShifts = "View Night Shifts";
+    private static final String buttonLabelEmployeeViewWorkingDays= "View Working Days";
+    private static final String buttonLabelEmployeeViewForensicCases = "View Forensic Cases";
+
+    private static final String buttonLabelDoctorCreateAppointment = "Create Appointment";
+    private static final String buttonLabelDoctorWritePrescription = "Write Prescription";
+    private static final String buttonLabelDoctorViewPatientHistory = "View Patient History";
+    private static final String buttonLabelDoctorViewAllergies = "View Allergies";
+    private static final String buttonLabelDoctorAddAllergy = "Add Allergy";
+    private static final String buttonLabelDoctorViewSymptoms = "View Symptoms";
+    private static final String buttonLabelDoctorAddSymptom = "Add Symptom";
+    private static final String buttonLabelDoctorViewIllness = "View Illness";
+    private static final String buttonLabelDoctorAddIllness = "Add Illness";
+    private static final String buttonLabelDoctorEnterTestResults = "Enter Test Results";
+    private static final String buttonLabelDoctorHospitalizePatient = "Hospitalize Patient";
+
     private static final String buttonLabelNurseTestPatient = "Test Patient";
     private static final String buttonLabelNurseViewTests = "View Tests";
+
+    private static final String buttonLabelPatientViewAppointments = "View Appointments";
+    private static final String buttonLabelPatientAddAppointments = "Add Appointments";
+    private static final String buttonLabelPatientDeleteAppointments = "Delete Appointments";
+    private static final String buttonLabelPatientViewInformation = "View Information";
 
     public MenuManager()
     {
@@ -85,8 +106,29 @@ public class MenuManager
         ActionScreen acAdminSetWorkingDays = new ActionScreen(buttonLabelAdminSetWorkingDays);
         ActionScreen acAdminSetNightShifts = new ActionScreen(buttonLabelAdminSetNightShift);
 
+        ActionScreen acEmployeeViewNightShifts = new ActionScreen(buttonLabelEmployeeViewNightShifts);
+        ActionScreen acEmployeeViewWorkingDays = new ActionScreen(buttonLabelEmployeeViewWorkingDays);
+        ActionScreen acEmployeeViewForensicCases = new ActionScreen(buttonLabelEmployeeViewForensicCases);
+
+        ActionScreen acDoctorCreateAppointment = new ActionScreen(buttonLabelDoctorCreateAppointment);
+        ActionScreen acDoctorWritePrescription = new ActionScreen(buttonLabelDoctorWritePrescription);
+        ActionScreen acDoctorViewPatientHistory = new ActionScreen(buttonLabelDoctorViewPatientHistory);
+        ActionScreen acDoctorViewAllergies = new ActionScreen(buttonLabelDoctorViewAllergies);
+        ActionScreen acDoctorAddAllergy = new ActionScreen(buttonLabelDoctorAddAllergy);
+        ActionScreen acDoctorViewSymptoms = new ActionScreen(buttonLabelDoctorViewSymptoms);
+        ActionScreen acDoctorAddSymptom = new ActionScreen(buttonLabelDoctorAddSymptom);
+        ActionScreen acDoctorViewIllness = new ActionScreen(buttonLabelDoctorViewIllness);
+        ActionScreen acDoctorAddIllness = new ActionScreen(buttonLabelDoctorAddIllness);
+        ActionScreen acDoctorEnterTestResults = new ActionScreen(buttonLabelDoctorEnterTestResults);
+        ActionScreen acDoctorHospitalizePatient = new ActionScreen(buttonLabelDoctorHospitalizePatient);
+
         ActionScreen acNurseTestPatient = new ActionScreen(buttonLabelNurseTestPatient);
         ActionScreen acNurseViewTests = new ActionScreen(buttonLabelNurseViewTests);
+
+        ActionScreen acPatientViewAppointments = new ActionScreen(buttonLabelPatientViewAppointments);
+        ActionScreen acPatientAddAppointments = new ActionScreen(buttonLabelPatientAddAppointments);
+        ActionScreen acPatientDeleteAppointments = new ActionScreen(buttonLabelPatientDeleteAppointments);
+        ActionScreen acPatientViewInformation = new ActionScreen(buttonLabelPatientViewInformation);
 
         // Buttons
 
@@ -102,8 +144,29 @@ public class MenuManager
         Button buttonAdminSetWorkingDays = new Button(buttonLabelAdminSetWorkingDays);
         Button buttonAdminSetSetNightShift = new Button(buttonLabelAdminSetNightShift);
 
+        Button buttonEmployeeViewNightShifts  = new Button(buttonLabelEmployeeViewNightShifts);
+        Button buttonEmployeeViewWorkingDays = new Button(buttonLabelEmployeeViewWorkingDays);
+        Button buttonEmployeeViewForensicCases = new Button(buttonLabelEmployeeViewForensicCases);
+
+        Button buttonDoctorCreateAppointment = new Button(buttonLabelDoctorCreateAppointment);
+        Button buttonDoctorWritePrescription = new Button(buttonLabelDoctorWritePrescription);
+        Button buttonDoctorViewPatientHistory = new Button(buttonLabelDoctorViewPatientHistory);
+        Button buttonDoctorViewAllergies = new Button(buttonLabelDoctorViewAllergies);
+        Button buttonDoctorAddAllergy = new Button(buttonLabelDoctorAddAllergy);
+        Button buttonDoctorViewSymptoms = new Button(buttonLabelDoctorViewSymptoms);
+        Button buttonDoctorAddSymptom = new Button(buttonLabelDoctorAddSymptom);
+        Button buttonDoctorViewIllness = new Button(buttonLabelDoctorViewIllness);
+        Button buttonDoctorAddIllness = new Button(buttonLabelDoctorAddIllness);
+        Button buttonDoctorEnterTestResults = new Button(buttonLabelDoctorEnterTestResults);
+        Button buttonDoctorHospitalizePatient = new Button(buttonLabelDoctorHospitalizePatient);
+
         Button buttonNurseTestPatient = new Button(buttonLabelNurseTestPatient);
         Button buttonNurseViewTests = new Button(buttonLabelNurseViewTests);
+
+        Button buttonPatientViewAppointments = new Button(buttonLabelPatientViewAppointments);
+        Button buttonPatientAddAppointments = new Button(buttonLabelPatientAddAppointments);
+        Button buttonPatientDeleteAppointments = new Button(buttonLabelPatientDeleteAppointments);
+        Button buttonPatientViewInformation = new Button(buttonLabelPatientViewInformation);
 
         // Assign buttons to menus
 
@@ -119,12 +182,33 @@ public class MenuManager
         menuAdminMain.addButton(buttonAdminSetSetNightShift);
         menuAdminMain.addButton(buttonLogout);
 
+        menuDoctorMain.addButton(buttonDoctorCreateAppointment);
+        menuDoctorMain.addButton(buttonDoctorWritePrescription);
+        menuDoctorMain.addButton(buttonDoctorViewPatientHistory);
+        menuDoctorMain.addButton(buttonDoctorViewAllergies);
+        menuDoctorMain.addButton(buttonDoctorAddAllergy);
+        menuDoctorMain.addButton(buttonDoctorViewSymptoms);
+        menuDoctorMain.addButton(buttonDoctorAddSymptom);
+        menuDoctorMain.addButton(buttonDoctorViewIllness);
+        menuDoctorMain.addButton(buttonDoctorAddIllness);
+        menuDoctorMain.addButton(buttonDoctorEnterTestResults);
+        menuDoctorMain.addButton(buttonDoctorHospitalizePatient);
+        menuDoctorMain.addButton(buttonEmployeeViewNightShifts);
+        menuDoctorMain.addButton(buttonEmployeeViewWorkingDays);
+        menuDoctorMain.addButton(buttonEmployeeViewForensicCases);
         menuDoctorMain.addButton(buttonLogout);
 
         menuNurseMain.addButton(buttonNurseTestPatient);
         menuNurseMain.addButton(buttonNurseViewTests);
+        menuNurseMain.addButton(buttonEmployeeViewNightShifts);
+        menuNurseMain.addButton(buttonEmployeeViewWorkingDays);
+        menuNurseMain.addButton(buttonEmployeeViewForensicCases);
         menuNurseMain.addButton(buttonLogout);
 
+        menuPatientMain.addButton(buttonPatientViewAppointments);
+        menuPatientMain.addButton(buttonPatientAddAppointments);
+        menuPatientMain.addButton(buttonPatientDeleteAppointments);
+        menuPatientMain.addButton(buttonPatientViewInformation);
         menuPatientMain.addButton(buttonLogout);
 
         // Assign previous menus
@@ -144,8 +228,29 @@ public class MenuManager
         buttonAdminSetWorkingDays.setActionScreen(acAdminSetWorkingDays);
         buttonAdminSetSetNightShift.setActionScreen(acAdminSetNightShifts);
 
+        buttonEmployeeViewNightShifts.setActionScreen(acEmployeeViewNightShifts);
+        buttonEmployeeViewWorkingDays.setActionScreen(acEmployeeViewWorkingDays);
+        buttonEmployeeViewForensicCases.setActionScreen(acEmployeeViewForensicCases);
+
+        buttonDoctorCreateAppointment.setActionScreen(acDoctorCreateAppointment);
+        buttonDoctorWritePrescription.setActionScreen(acDoctorWritePrescription);
+        buttonDoctorViewPatientHistory.setActionScreen(acDoctorViewPatientHistory);
+        buttonDoctorViewAllergies.setActionScreen(acDoctorViewAllergies);
+        buttonDoctorAddAllergy.setActionScreen(acDoctorAddAllergy);
+        buttonDoctorViewSymptoms.setActionScreen(acDoctorViewSymptoms);
+        buttonDoctorAddSymptom.setActionScreen(acDoctorAddSymptom);
+        buttonDoctorViewIllness.setActionScreen(acDoctorViewIllness);
+        buttonDoctorAddIllness.setActionScreen(acDoctorAddIllness);
+        buttonDoctorEnterTestResults.setActionScreen(acDoctorEnterTestResults);
+        buttonDoctorHospitalizePatient.setActionScreen(acDoctorHospitalizePatient);
+
         buttonNurseTestPatient.setActionScreen(acNurseTestPatient);
-        buttonNurseTestPatient.setActionScreen(acNurseViewTests);
+        buttonNurseViewTests.setActionScreen(acNurseViewTests);
+
+        buttonPatientViewAppointments.setActionScreen(acPatientViewAppointments);
+        buttonPatientAddAppointments.setActionScreen(acPatientAddAppointments);
+        buttonPatientDeleteAppointments.setActionScreen(acPatientDeleteAppointments);
+        buttonPatientViewInformation.setActionScreen(acPatientViewInformation);
 
         // Add menus to the hash map
 
@@ -243,6 +348,62 @@ public class MenuManager
             {
                 button.getActionScreen().adminSetNightShifts(Login.getLoggedinUser());
             }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelEmployeeViewNightShifts)) // View night shifts
+            {
+                button.getActionScreen().employeeViewNightShifts(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelEmployeeViewWorkingDays)) // View Working Days
+            {
+                button.getActionScreen().employeeViewWorkingDays(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelEmployeeViewForensicCases)) // View Forensic Cases
+            {
+                button.getActionScreen().employeeViewForensicCases(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelDoctorCreateAppointment)) // Create appointment
+            {
+                button.getActionScreen().doctorCreateAppointment(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelDoctorWritePrescription)) // Write prescription
+            {
+                button.getActionScreen().doctorWritePrescription(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelDoctorViewPatientHistory)) // View Patient History
+            {
+                button.getActionScreen().doctorViewPatientHistory(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelDoctorViewAllergies)) // View allergies
+            {
+                button.getActionScreen().doctorViewAllergies(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelDoctorAddAllergy)) // Add allergy
+            {
+                button.getActionScreen().doctorAddAllergy(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelDoctorViewSymptoms)) // View symptoms
+            {
+                button.getActionScreen().doctorViewSymptoms(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelDoctorAddSymptom)) // Add symptom
+            {
+                button.getActionScreen().doctorAddSymptom(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelDoctorViewIllness)) // View illness
+            {
+                button.getActionScreen().doctorViewIllness(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelDoctorAddIllness)) // Add illness
+            {
+                button.getActionScreen().doctorAddIllness(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelDoctorEnterTestResults)) // Enter test results
+            {
+                button.getActionScreen().doctorEnterTestResults(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelDoctorHospitalizePatient)) // Hospitalize patient
+            {
+                button.getActionScreen().doctorHospitalizePatient(Login.getLoggedinUser());
+            }
             else if(button.getActionScreen().getLabel().equals(buttonLabelNurseTestPatient)) // Test patient screen
             {
                 button.getActionScreen().nurseTestPatient(Login.getLoggedinUser());
@@ -250,6 +411,22 @@ public class MenuManager
             else if(button.getActionScreen().getLabel().equals(buttonLabelNurseViewTests)) // View tests screen
             {
                 button.getActionScreen().nurseViewTests(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelPatientViewAppointments)) // View Appointments
+            {
+                button.getActionScreen().patientViewAppointments(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelPatientAddAppointments)) // Add Appointments
+            {
+                button.getActionScreen().patientAddAppointments(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelPatientDeleteAppointments)) // Delete Appointments
+            {
+                button.getActionScreen().patientDeleteAppointments(Login.getLoggedinUser());
+            }
+            else if(button.getActionScreen().getLabel().equals(buttonLabelPatientViewInformation)) // View Information
+            {
+                button.getActionScreen().patientViewInformation(Login.getLoggedinUser());
             }
         }
     }

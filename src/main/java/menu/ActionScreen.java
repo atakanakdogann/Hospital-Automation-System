@@ -1,9 +1,7 @@
 package main.java.menu;
 
 import main.java.login.Login;
-import main.java.user.Admin;
-import main.java.user.Nurse;
-import main.java.user.User;
+import main.java.user.*;
 
 public class ActionScreen
 {
@@ -80,14 +78,125 @@ public class ActionScreen
         ((Admin) user).setNightShifts();
     }
 
-    //TODO: please re-implement this method according to changes in Examination class
-    /*public void nurseTestPatient(User user)
+    public void employeeViewNightShifts(User user)
+    {
+        if(!(user instanceof Employee))
+            return;
+
+        ((Employee) user).viewNightShifts();
+    }
+
+    public void employeeViewWorkingDays(User user)
+    {
+        if(!(user instanceof Employee))
+            return;
+
+        ((Employee) user).viewWorkingDays();
+    }
+
+    public void employeeViewForensicCases(User user)
+    {
+        if(!(user instanceof Employee))
+            return;
+
+        ((Employee) user).viewForensicCases();
+    }
+
+    public void doctorCreateAppointment(User user)
+    {
+        if(!(user instanceof Doctor))
+            return;
+
+        ((Doctor) user).createAppointment();
+    }
+
+    public void doctorWritePrescription(User user)
+    {
+        if(!(user instanceof Doctor))
+            return;
+
+        ((Doctor) user).writePrescription();
+    }
+
+    public void doctorViewPatientHistory(User user)
+    {
+        if(!(user instanceof Doctor))
+            return;
+
+        ((Doctor) user).viewPatientHistory();
+    }
+
+    public void doctorViewAllergies(User user)
+    {
+        if(!(user instanceof Doctor))
+            return;
+
+        ((Doctor) user).viewAllergies();
+    }
+
+    public void doctorAddAllergy(User user)
+    {
+        if(!(user instanceof Doctor))
+            return;
+
+        ((Doctor) user).addAllergies();
+    }
+
+    public void doctorViewSymptoms(User user)
+    {
+        if(!(user instanceof Doctor))
+            return;
+
+        ((Doctor) user).viewSymptoms();
+    }
+
+    public void doctorAddSymptom(User user)
+    {
+        if(!(user instanceof Doctor))
+            return;
+
+        ((Doctor) user).addSymptoms();
+    }
+
+    public void doctorViewIllness(User user)
+    {
+        if(!(user instanceof Doctor))
+            return;
+
+        ((Doctor) user).viewIllness();
+    }
+
+    public void doctorAddIllness(User user)
+    {
+        if(!(user instanceof Doctor))
+            return;
+
+        ((Doctor) user).addIllness();
+    }
+
+    public void doctorEnterTestResults(User user)
+    {
+        if(!(user instanceof Doctor))
+            return;
+
+        ((Doctor) user).enterTestResults();
+    }
+
+    public void doctorHospitalizePatient(User user)
+    {
+        if(!(user instanceof Doctor))
+            return;
+
+        ((Doctor) user).hospitalizePatient();
+    }
+
+    public void nurseTestPatient(User user)
     {
         if(!(user instanceof Nurse))
             return;
 
         ((Nurse) user).testPatient();
-    }*/
+    }
 
     public void nurseViewTests(User user)
     {
@@ -95,6 +204,38 @@ public class ActionScreen
             return;
 
         ((Nurse) user).viewTestsToBeDone();
+    }
+
+    public void patientViewAppointments(User user)
+    {
+        if(!(user instanceof Patient))
+            return;
+
+        ((Patient) user).viewAppointments();
+    }
+
+    public void patientAddAppointments(User user)
+    {
+        if(!(user instanceof Patient))
+            return;
+
+        ((Patient) user).addAppoinment();
+    }
+
+    public void patientDeleteAppointments(User user)
+    {
+        if(!(user instanceof Patient))
+            return;
+
+        ((Patient) user).deleteAppointment();
+    }
+
+    public void patientViewInformation(User user)
+    {
+        if(!(user instanceof Patient))
+            return;
+
+        ((Patient) user).viewInformation();
     }
 
     public String getLabel()
