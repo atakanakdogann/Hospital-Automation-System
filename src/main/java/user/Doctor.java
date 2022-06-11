@@ -112,7 +112,7 @@ public class Doctor extends Employee{
      * @param patient
      * @return
      */
-    public ArrayList<String> getIllness(Patient patient){
+    public String getIllness(Patient patient){
         return patient.getIllness();
     }
 

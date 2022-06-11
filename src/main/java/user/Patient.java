@@ -160,46 +160,68 @@ import java.util.Queue;
         return str;
     }
 
+     /**
+      * Get all test results of the patient
+      * @return all test results
+      */
     public String getTestResult() {
-        String str = "";
+           String allTestResults = "";
+        for (Examination testResult : testResults) {
+            allTestResults = allTestResults + testResult.toString();
+        }
+            return allTestResults;
+        }
 
-        // testResults[];
-        // Empty Method
-
-        return str;
+     /**
+      * Get all medicine requirements of the patient
+      * @return all medicine requirements
+      */
+     public String getMedicineRequirements() {
+        String allMedicineRequirements = "";
+        for (String medicineRequirement : medicineRequirements) {
+            allMedicineRequirements = allMedicineRequirements + medicineRequirement;
+        }
+        return allMedicineRequirements;
     }
 
-    public String getMedicineRequirements() {
-        String str = "";
-
-        // medicineRequirements;
-        //  Empty Method
-
-        return str;
-    }
-
+     /**
+      * Get all allergies of the patient
+      * @return all allergies
+      */
     public String getAllergies() {
-        String str = "";
-
-        // allergies[];
-        //  Empty Method
-
-        return str;
+        String allAllergies = "";
+        for (String allergie : allergies) {
+            allAllergies = allAllergies + allergie;
+        }
+        return allAllergies;
     }
 
-    public ArrayList<String> getIllness() {
-        String str = "";
-
-        // illnesses[];
-        //  Empty Method
-
-        return illnesses;
+     /**
+      * Get Illnes list of the patient
+      * @return ArrayList of illness
+      */
+    public String getIllness() {
+        String allIllnesses = "";
+        for (String illness : illnesses) {
+            allIllnesses = allIllnesses + illness;
+        }
+        return allIllnesses;
     }
+
+     /**
+      * Add  a illness on illnesses of the patient
+      * @param illness a illness
+      */
     public void addIllness(String illness) {
         illnesses.add(illness);
     }
 
+     /**
+      * Add a symptom on symptons
+      * @param symptom
+      */
     public void addSymptom(String symptom) {
+        symptoms.add(symptom);
     }
 
      /**

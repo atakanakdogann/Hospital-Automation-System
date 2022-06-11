@@ -74,4 +74,13 @@ public class Examination {
     public void setResult(String result) {
         this.result = result;
     }
+    public String toString(){
+        String theString;
+        theString = "" + testName;
+        theString = theString + "\ndoctor: " + doctor.getUserName();
+        theString = theString + "\npatient: " + patient;
+        theString = theString + "\nresult: " + result;
+
+        return theString;
+    }
 }
