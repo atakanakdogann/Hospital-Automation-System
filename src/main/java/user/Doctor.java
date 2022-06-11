@@ -5,7 +5,6 @@ import main.java.HelperClass.PatientRoom;
 
 import javax.print.Doc;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.PriorityQueue;
 import java.util.Queue;
 

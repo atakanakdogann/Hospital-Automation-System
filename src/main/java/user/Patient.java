@@ -2,9 +2,11 @@
 
 import main.java.HelperClass.Examination;
 import main.java.HelperClass.PatientRoom;
+import main.java.database.Database;
 
 import java.util.ArrayList;
 import java.util.Queue;
+import java.util.Scanner;
 
  public class Patient extends User{
     private PatientRoom room;
@@ -13,6 +15,7 @@ import java.util.Queue;
     private int height;
     private String bloodType;
     protected Queue<Appointments> appointments;
+    private Appointments[] appointArray;
     protected Queue<String> symptoms;
     protected ArrayList<String> prescriptions = new ArrayList<>();
     protected ArrayList<Examination> testResults = new ArrayList<>();
@@ -86,80 +89,136 @@ import java.util.Queue;
 
         return history;
     }
-/*
-    public boolean addAppointment(Appointments newAppointment) {
-       // Date selectedDate = newAppointment.getDate();
-        Doctor selectedDoctor = newAppointment.getDoctor();
-        Appointments selectedAppointment = findFreeAppointment(selectedDate, selectedDoctor);
-        if (selectedAppointment.getPatient() == null) {
-            return true;
+     public String getProfile(){
+         String history = "";
+         history = history + "name: " + this.getUserName();
+         history = history + "age: " + getAge();
+         history = history + "\nweight: " + getWeight();
+         history = history + "\nheight: " + getHeight();
+         history = history + "\nblood type: " + getBloodType();
+
+         return history;
+     }
+
+    public void viewAppointments(){
+        if (appointments.isEmpty()){
+            System.out.println("\nYou don't have any Appointments.\n");
         } else {
-            return false;
+            appointArray = appointments.toArray(new Appointments[0]);
+
+            for (int i = 0; i < appointArray.length; i++){
+                System.out.println("[" + i +"]: " + appointArray[i].getDoctor().getUserName() + " - Day:" + appointArray[i].getDate().day + ", Hour:" + appointArray[i].getDate().time );
+            }
         }
     }
-    /*
-    public Appointments findFreeAppointment(Date selectedDate, Doctor selectedDoctor) {
-        return (HospitalSystem.appointmentData[0]);
-    }
-*/
+    public void addAppoinment(){
 
-    public boolean deleteAppointment(Appointments selectedAppointment) {
-        if (selectedAppointment.getPatient() == this) {
-            selectedAppointment.putPatient(null);
-            return true;
-        } else {
-            return false;
+        // this part is not complated, where is appointment database? //
+
+        listDoctorsAppointment();
+        selectDoctor();
+        selectDate();
+
+        Database.db.addAppointment(this.getUserID());
+    }
+
+     public String listDoctorsAppointment() {
+         String str = "";
+
+         //  Empty Method
+
+         return str;
+     }
+     public Doctor selectDoctor() {
+         Doctor theSelectDoctor = new Doctor();
+
+         //  Empty Method
+
+         return theSelectDoctor;
+     }
+
+     public Date selectDate() {
+         Date theSelectedDate = new Date();
+
+         //  Empty Method
+
+         return theSelectedDate;
+     }
+
+     public void deleteAppointment(){
+        viewAppointments();
+        if (!appointments.isEmpty()){
+            System.out.println("Select a Appointment: ");
+            Scanner scan = new Scanner(System.in);
+            int selectIndex = scan.nextInt();
+            if (selectIndex < 0 || selectIndex >= appointments.size()){
+                System.out.println("Appointment Deleting is failed");
+                return;
+            }
+            // this part is not complated, where is appointment database? //
+            appointArray[selectIndex].putPatient(null);
+            appointments.remove(appointArray[selectIndex]);
         }
     }
 
-    public String listDoctorsAppointment() {
-        String str = "";
+    public void viewInformation(){
+        String infMenu;
+        Scanner scan = new Scanner(System.in);
+        do {
+            System.out.println("\n-Patient Information-\n");
+            System.out.println("(1): Profile");
+            System.out.println("(2): View Prescriptions");
+            System.out.println("(3): View Allergies");
+            System.out.println("(4): View Test Results");
+            System.out.println("(5): View Medicine Requirements");
 
-        //  Empty Method
+            System.out.println("(O) Exit");
+            /*
+             * get a string from user for controlling menu
+             */
+            infMenu = scan.next();
 
-        return str;
+            if (infMenu.equals("1")) {
+
+                System.out.println("-Profile-\n" + getProfile());
+                return;
+
+            } else if (infMenu.equals("2")) {
+
+                System.out.println("-Prescriptions-\n" + getPrescriptions());
+                return;
+
+            } else if (infMenu.equals("3")) {
+
+                System.out.println("-Allergies-\n" + getAllergies());
+                return;
+
+            } else if (infMenu.equals("4")) {
+
+                System.out.println("-Test Results-\n" + getTestResult());
+                return;
+
+            } else if (infMenu.equals("5")) {
+
+                System.out.println("-Medicine Requirements-\n" + getMedicineRequirements());
+                return;
+
+            } else if (infMenu.equals("0")) {
+                return;                                    // end the viewInformation method
+
+            } else {
+                System.out.println("\nWrong character entered, please try again.");
+
+            }
+        } while (true);
     }
-
-    public Date selectDate() {
-        Date theSelectedDate = new Date();
-
-        //  Empty Method
-
-        return theSelectedDate;
-    }
-
-    public Doctor selectDoctor() {
-        Doctor theSelectDoctor = new Doctor();
-
-        //  Empty Method
-
-        return theSelectDoctor;
-    }
-
-    public String listMyAppoinments() {
-        String str = "";
-
-        //  Empty Method
-
-        return str;
-    }
-
-    public String listAppointments() {
-        String str = "";
-
-        //  Empty Method
-
-        return str;
-    }
-
     public String getPrescriptions() {
-        String str = "";
-
-        // prescriptions[];
-        // Empty Method
-        return str;
+        String allPrescriptions = "";
+        for (String prescription : prescriptions) {
+            allPrescriptions = allPrescriptions + "\n" + prescription;
+        }
+        return allPrescriptions;
     }
-
      /**
       * Get all test results of the patient
       * @return all test results

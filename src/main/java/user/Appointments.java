@@ -1,7 +1,5 @@
 package main.java.user;
 
-import java.util.Date;
-
 public class Appointments {
     private Doctor doctor;
     private Date date;
