@@ -8,11 +8,6 @@ import java.util.ArrayList;
  */
 public class Employee extends User {
     private String proficiency;
-
-    public String getProficiency() {
-        return proficiency;
-    }
-
     private ArrayList<Boolean> workingDays;
     private ArrayList<Boolean> nightShifts;
     private ArrayList<String> forensicCases;
@@ -53,6 +48,13 @@ public class Employee extends User {
         forensicCases = _forensicCases;
     }
 
+    /**
+     * Returns proficiency of the employee.
+     * @return Proficiency of the employee.
+     */    
+    public String getProficiency() {
+        return proficiency;
+    }
 
     // A method that prints the night shifts of the employee.
     public void viewNightShifts()
