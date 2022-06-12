@@ -32,6 +32,7 @@ public class Employee extends User {
 
     public Employee(String ID, String pass, String name, String userType, String proficiency) {
         super(ID, pass, name, userType);
+
         this.proficiency = proficiency;
         workingDays = new ArrayList<Boolean>(WEEKDAY_CAPACITY);
         nightShifts = new ArrayList<Boolean>(WEEKDAY_CAPACITY);
@@ -52,19 +53,52 @@ public class Employee extends User {
         forensicCases = _forensicCases;
     }
 
+
+    // A method that prints the night shifts of the employee.
     public void viewNightShifts()
     {
+        System.out.println("\nDay \t\t nightShift\n");
 
+        var iter = nightShifts.iterator();
+        int _day = 1;
+        while(iter.hasNext()){
+            var nextEl = iter.next();
+            if(nextEl)
+                System.out.printf("%d \t\t YES\n", _day++);
+            else
+                System.out.printf("%d \t\t NO\n", _day++);
+        }
     }
 
+    // Printing the working days of the employee.
     public void viewWorkingDays()
     {
+        System.out.println("\nDay \t\t Working Day\n");
 
+        var iter = workingDays.iterator();
+        int _day = 1;
+        while(iter.hasNext()){
+            var nextEl = iter.next();
+            if(nextEl)
+                System.out.printf("%d \t\t YES\n", _day++);
+            else
+                System.out.printf("%d \t\t NO\n", _day++);
+        }
     }
 
+    /**
+     * This method iterates through the forensicCases ArrayList and prints out each element
+     */
     public void viewForensicCases()
     {
+        var iter = forensicCases.iterator();
 
+        System.out.println("\nForensic cases:\n");
+
+        while(iter.hasNext()){
+            var nextEl = iter.next();
+            System.out.printf("+%s\n", nextEl);
+        }
     }
 
     /**
@@ -73,7 +107,6 @@ public class Employee extends User {
      * @param _workingDays list of working days for one week.
      */
     public void setWorkingDays(ArrayList<Boolean> _workingDays) {
-        // change here
         workingDays = _workingDays;
     }
 
