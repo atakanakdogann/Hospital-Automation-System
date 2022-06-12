@@ -1,12 +1,23 @@
 package main.java.user;
 
-public class Date {
-    public String day;
-    public String time;
+public class Date
+{
+    private int day;
+    private int time;
 
-    public Date(){
+    public Date(int day, int time){
 
-        String day;
-        String time;
+        this.day = day;
+        this.time = time;
+    }
+
+    public int getDay()
+    {
+        return day;
+    }
+
+    public int getTime()
+    {
+        return time;
     }
 }
