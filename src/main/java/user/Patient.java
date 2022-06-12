@@ -226,7 +226,7 @@ import java.util.Scanner;
     public String getTestResult() {
            String allTestResults = "";
         for (Examination testResult : testResults) {
-            allTestResults = allTestResults + testResult.toString();
+            allTestResults = allTestResults + "\n" +testResult.toString();
         }
             return allTestResults;
         }
