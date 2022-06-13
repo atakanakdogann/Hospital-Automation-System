@@ -30,18 +30,18 @@ public class Appointments {
 
 
     public Appointments(){
+        this.patient = null;
 
     }
 
     public Appointments(Patient patient, Doctor doctor, Date date) {
+        this.patient = patient;
+        this.doctor = doctor;
+        this.date = date;
     }
 
     public Patient getPatient() {
         return patient;
-    }
-
-    public void putPatient(Patient newPatient){
-        patient = newPatient;
     }
 
 }

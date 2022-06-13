@@ -4,6 +4,7 @@ import main.java.HelperClass.Examination;
 import main.java.HelperClass.PatientRoom;
 import main.java.database.Database;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -14,8 +15,7 @@ import java.util.Scanner;
     private int weight;
     private int height;
     private String bloodType;
-    protected Queue<Appointments> appointments;
-    private Appointments[] appointArray;
+    protected ArrayList<Appointments> appointArray;
     protected Queue<String> symptoms;
     protected ArrayList<String> prescriptions = new ArrayList<>();
     protected ArrayList<Examination> testResults = new ArrayList<>();
@@ -100,67 +100,79 @@ import java.util.Scanner;
          return history;
      }
 
-    public void viewAppointments(){
-        if (appointments.isEmpty()){
+    public void viewAppointments() {
+        loadAppointment();
+        if (appointArray.isEmpty()) {
             System.out.println("\nYou don't have any Appointments.\n");
         } else {
-            appointArray = appointments.toArray(new Appointments[0]);
-
-            for (int i = 0; i < appointArray.length; i++){
-                System.out.println("[" + i +"]: " + appointArray[i].getDoctor().getUserName() + " - Day:" + appointArray[i].getDate().getDay() + ", Hour:" + appointArray[i].getDate().getTime() );
+            for (int i = 0; i < appointArray.size(); i++) {
+                System.out.println("[" + i + "]: " + appointArray.get(i).getDoctor().getUserName() + " - Day:" + appointArray.get(i).getDate().getDay() + ", Hour:" + appointArray.get(i).getDate().getTime());
             }
         }
     }
-    public void addAppoinment(){
-
-        // this part is not complated, where is appointment database? //
-
-        listDoctorsAppointment();
-        selectDoctor();
-        selectDate();
-
-        Database.db.addAppointment(this.getUserID());
+    public void addAppointment(){
+        int selectIndex;
+        Doctor selectedDoctor;
+        Scanner scan = new Scanner(System.in);
+        /* Get no patient appointments */
+        ArrayList<Appointments> freeAppointments = Database.db.getAppointment((Patient) null);
+        /* Get doctors who have an empty appointment */
+        ArrayList<Doctor> doctors = new ArrayList<>();
+        for (Appointments freeAppointment : freeAppointments) {
+            if (!doctors.contains(freeAppointment.getDoctor())) {
+                doctors.add(freeAppointment.getDoctor());
+            }
+        }
+        /* Select doctor */
+        for (int i = 0; i < doctors.size(); i++){
+            System.out.println("[" + i +"]: " + doctors.get(i).getUserName());
+        }
+        System.out.print("\nSelect a doctor: ");
+        selectIndex = scan.nextInt();
+        if(selectIndex >= 0 && selectIndex < doctors.size()) {
+            selectedDoctor = doctors.get(selectIndex);
+            for (int i = 0; i < freeAppointments.size(); i++) {
+                if (selectedDoctor.equals(freeAppointments.get(i).getDoctor())) {
+                    System.out.println("[" + i + "]: " + freeAppointments.get(i).getDoctor().getUserName() + " - Day:" + freeAppointments.get(i).getDate().getDay() + ", Hour:" + freeAppointments.get(i).getDate().getTime());
+                }
+            }
+            /* Select Appointment that the selected doctor has */
+            System.out.print("\nSelect a date: ");
+            selectIndex = scan.nextInt();
+            if (selectIndex >= 0 && selectIndex < freeAppointments.size()) {
+                freeAppointments.get(selectIndex).setPatient(this);
+                System.out.println("\nAppointment created successfully.");
+            } else {
+                System.out.println("\nFailed to create appointment.");
+            }
+        } else {
+            System.out.println("\nFailed to create appointment.");
+        }
     }
-
-     public String listDoctorsAppointment() {
-         String str = "";
-
-         //  Empty Method
-
-         return str;
-     }
-     public Doctor selectDoctor() {
-         Doctor theSelectDoctor = new Doctor();
-
-         //  Empty Method
-
-         return theSelectDoctor;
-     }
-
-     public Date selectDate() {
-         Date theSelectedDate = new Date();
-
-         //  Empty Method
-
-         return theSelectedDate;
-     }
-
      public void deleteAppointment(){
         viewAppointments();
-        if (!appointments.isEmpty()){
-            System.out.println("Select a Appointment: ");
+        if (!appointArray.isEmpty()){
+            System.out.print("Select a Appointment: ");
             Scanner scan = new Scanner(System.in);
             int selectIndex = scan.nextInt();
-            if (selectIndex < 0 || selectIndex >= appointments.size()){
-                System.out.println("Appointment Deleting is failed");
-                return;
+            if (selectIndex > 0 && selectIndex < appointArray.size()){
+                Appointments deletedAppointment = Database.db.getAppointment(appointArray.get(selectIndex));
+                deletedAppointment.setPatient((Patient)null);
+                System.out.println("\nAppointment deleted successfully.");
+            } else {
+                System.out.println("\nAppointment Deleting is failed");
             }
-            // this part is not complated, where is appointment database? //
-            appointArray[selectIndex].putPatient(null);
-            appointments.remove(appointArray[selectIndex]);
+        } else {
+            System.out.println("\nYou have not any appointment");
         }
     }
 
+     /**
+      * Load appointments of the patient
+      */
+    private void loadAppointment(){
+        appointArray = Database.db.getAppointment(this);
+    }
     public void viewInformation(){
         String infMenu;
         Scanner scan = new Scanner(System.in);
@@ -281,13 +293,5 @@ import java.util.Scanner;
       */
     public void addSymptom(String symptom) {
         symptoms.add(symptom);
-    }
-
-     /**
-      * doctor could add new appointment via this method
-      * @param creation an appointment
-      */
-    public void addAppointment(Appointments creation) {
-        appointments.offer(creation);
     }
 }

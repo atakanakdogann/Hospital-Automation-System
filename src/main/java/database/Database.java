@@ -230,6 +230,34 @@ public class Database
 
         return null;
     }
+    public ArrayList<Appointments> getAppointment(Patient patient)
+    {
+        ArrayList<Appointments> appointmentArray = new ArrayList<>();
+        ListIterator<Appointments> iter = appointments.listIterator();
+        while(iter.hasNext())
+        {
+            Appointments temp = iter.next();
+            if(temp.getPatient().equals(patient))
+            {
+                appointmentArray.add(temp);
+            }
+        }
+        return appointmentArray;
+    }
+    public ArrayList<Appointments> getAppointment(Doctor doctor)
+    {
+        ArrayList<Appointments> appointmentArray = new ArrayList<>();
+        ListIterator<Appointments> iter = appointments.listIterator();
+        while(iter.hasNext())
+        {
+            Appointments temp = iter.next();
+            if(temp.getDoctor().equals(doctor))
+            {
+                appointmentArray.add(temp);
+            }
+        }
+        return appointmentArray;
+    }
 
     private void loadUserList()
     {
