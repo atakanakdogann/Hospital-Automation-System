@@ -3,6 +3,8 @@ package main.java.database;
 import main.java.datastructures.AVLTree;
 import main.java.datastructures.BinarySearchTree;
 import main.java.datastructures.KWLinkedList;
+import main.java.datastructures.SkipListJava;
+
 import main.java.user.*;
 
 import java.util.*;
