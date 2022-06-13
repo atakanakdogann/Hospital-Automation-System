@@ -1,6 +1,6 @@
 package main.java.user;
 
-public class Appointments {
+public class Appointments implements Comparable<Appointments> {
     private Doctor doctor;
     private Date date;
     private Patient patient;
@@ -44,4 +44,9 @@ public class Appointments {
         return patient;
     }
 
+    @Override
+    public int compareTo(Appointments o) {
+
+        return this.getDoctor().getUserID().compareTo(o.getDoctor().getUserID());
+    }
 }
