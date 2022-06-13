@@ -55,7 +55,8 @@ public class Admin extends Employee
             int prof = -1;
             try
             {
-                System.out.print("\nProficiency types:\n0.Radiolog\n1.Internist\n2.Neurolog\n3.Surgeon)\n");
+                System.out.print("\nProficiency types:\n0.Radiolog\n1.Internist\n2.Neurolog\n3.Surgeon\n");
+                System.out.println("Selection: ");
                 prof = scanner.nextInt();
                 scanner.nextLine();
             }
