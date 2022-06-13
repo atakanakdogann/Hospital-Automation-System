@@ -227,7 +227,7 @@ import java.util.Scanner;
     public String getPrescriptions() {
         String allPrescriptions = "";
         for (String prescription : prescriptions) {
-            allPrescriptions = allPrescriptions + "\n" + prescription;
+            allPrescriptions = allPrescriptions + prescription  + "\n";
         }
         return allPrescriptions;
     }
@@ -238,7 +238,7 @@ import java.util.Scanner;
     public String getTestResult() {
            String allTestResults = "";
         for (Examination testResult : testResults) {
-            allTestResults = allTestResults + "\n" +testResult.toString();
+            allTestResults = allTestResults + testResult.toString() + "\n";
         }
             return allTestResults;
         }
@@ -250,7 +250,7 @@ import java.util.Scanner;
      public String getMedicineRequirements() {
         String allMedicineRequirements = "";
         for (String medicineRequirement : medicineRequirements) {
-            allMedicineRequirements = allMedicineRequirements + medicineRequirement;
+            allMedicineRequirements = allMedicineRequirements + medicineRequirement + "\n";
         }
         return allMedicineRequirements;
     }
@@ -262,7 +262,7 @@ import java.util.Scanner;
     public String getAllergies() {
         String allAllergies = "";
         for (String allergie : allergies) {
-            allAllergies = allAllergies + allergie;
+            allAllergies = allAllergies + allergie + "\n";
         }
         return allAllergies;
     }
@@ -274,7 +274,7 @@ import java.util.Scanner;
     public String getIllness() {
         String allIllnesses = "";
         for (String illness : illnesses) {
-            allIllnesses = allIllnesses + illness;
+            allIllnesses = allIllnesses + illness + "\n";
         }
         return allIllnesses;
     }
