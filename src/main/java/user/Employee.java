@@ -13,6 +13,12 @@ public class Employee extends User {
     private ArrayList<String> forensicCases;
     private final int WEEKDAY_CAPACITY = 7;
 
+    public final static String proAdmin = "Admin";
+    public final static String proRadiolog = "Radiolog";
+    public final static String proInternist = "Internist";
+    public final static String proNeorolog = "Neurolog";
+    public final static String proSurgeon = "Surgeon";
+
     public Employee() {
         super();
         workingDays = new ArrayList<Boolean>(WEEKDAY_CAPACITY);
