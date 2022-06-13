@@ -24,4 +24,22 @@ public class Date
         return time;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Date other = (Date) obj;
+        if (day != other.day)
+            return false;
+        if (time != other.time)
+            return false;
+        return true;
+    }
+
+    
+
 }
