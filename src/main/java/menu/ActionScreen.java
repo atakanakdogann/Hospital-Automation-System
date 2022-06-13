@@ -27,7 +27,7 @@ public class ActionScreen
         if(!(user instanceof Admin))
             return false;
 
-        return ((Admin) user).addUser();
+        return ((Admin) user).addEmployee();
     }
 
     public boolean adminRemoveUser(User user)
