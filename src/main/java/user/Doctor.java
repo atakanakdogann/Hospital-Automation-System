@@ -2,6 +2,7 @@ package main.java.user;
 
 import main.java.HelperClass.Examination;
 import main.java.HelperClass.PatientRoom;
+import main.java.database.Database;
 
 import javax.print.Doc;
 import java.util.ArrayList;
@@ -47,8 +48,7 @@ public class Doctor extends Employee{
      */
     public void createAppointment(Patient patient, Date date){
         Appointments creation = new Appointments(patient, this, date);
-        patientAppointments.add(creation);
-        patient.addAppointment(creation);
+        Database.db.addAppointment(creation);
     }
 
     /**
