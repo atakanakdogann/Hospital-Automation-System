@@ -219,7 +219,7 @@ public class ActionScreen
         if(!(user instanceof Patient))
             return;
 
-        ((Patient) user).addAppoinment();
+        ((Patient) user).addAppointment();
     }
 
     public void patientDeleteAppointments(User user)
