@@ -2,8 +2,8 @@ package main.java.HelperClass;
 import main.java.user.Patient;
 
 public class PatientRoom {
-    private double x;
-    private double y;
+    private int x;
+    private int y;
     private Patient patient;
 
     /**
@@ -12,7 +12,7 @@ public class PatientRoom {
      * @param y y-axis location of room
      * @param patient person staying in the room
      */
-    public PatientRoom(double x, double y, Patient patient){
+    public PatientRoom(int x, int y, Patient patient){
         this.x = x;
         this.y = y;
         this.patient = patient;
@@ -20,17 +20,17 @@ public class PatientRoom {
 
     /**
      * getter method of x
-     * @return double value of x-axis
+     * @return int value of x-axis
      */
-    public double getX() {
+    public int getX() {
         return x;
     }
 
     /**
      * getter method of y
-     * @return double value of y-axis
+     * @return int value of y-axis
      */
-    public double getY() {
+    public int getY() {
         return y;
     }
 

@@ -2,6 +2,8 @@ package main.java.datastructures;
 
 import java.io.*;
 
+import main.java.user.Patient;
+
 /** A class to represent a binary search tree.
  *  @author Koffman and Wolfgang
  */
@@ -69,7 +71,7 @@ public class BinarySearchTree < E
      */
     private Node < E > add(Node < E > localRoot, E item) {
         if (localRoot == null) {
-            // item is not in the tree � insert it.
+            // item is not in the tree insert it.
             addReturn = true;
             return new Node < E > (item);
         }

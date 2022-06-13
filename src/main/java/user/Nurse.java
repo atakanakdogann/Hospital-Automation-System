@@ -1,8 +1,8 @@
 package main.java.user;
 
 import main.java.HelperClass.Examination;
-
-import java.util.ArrayList;
+import main.java.database.Database;
+import java.util.Scanner;
 
 /**
  * Nurse class
@@ -21,9 +21,31 @@ public class Nurse extends Employee
         super(ID, pass, name, User.userTypeNurse, proficiency);
     }
 
+    private Patient findPatient(String patientID){
+        User tempPatient = new User(patientID);
+        Patient patient = (Patient) Database.db.getPatient(tempPatient);
+        return patient;
+    }
+
     public void testPatient()
     {
-
+        Scanner input = new Scanner(System.in);
+        System.out.println("enter patient ID: ");
+        String patientID = input.next();
+        Patient patient = findPatient(patientID);
+        if(patient == null){
+            System.err.println("patient could not found");
+        } else {
+            for (int i = 0; i < patient.testResults.size(); i++) {
+                var element = patient.testResults.get(i); 
+                if(element.getProficiency().equals(this.getProficiency()) && element.getResult() == null){
+                    System.out.println(element.getTestName() + "result: ");
+                    String result = input.next();
+                    testPatient(element, result);
+                }
+            }
+        }
+        input.close();
     }
 
     /**
@@ -31,6 +53,21 @@ public class Nurse extends Employee
      */
     public void viewTestsToBeDone()
     {
+        Scanner input = new Scanner(System.in);
+        System.out.println("enter patient ID: ");
+        String patientID = input.next();
+        Patient patient = findPatient(patientID);
+        if(patient == null){
+            System.err.println("patient could not found");
+        } else {
+            for (int i = 0; i < patient.testResults.size(); i++) {
+                var element = patient.testResults.get(i); 
+                if(element.getProficiency().equals(this.getProficiency()) && element.getResult() != null){
+                    System.out.println(element.getTestName() + "done");
+                }
+            }
+        }
+        input.close();
 
     }
 
