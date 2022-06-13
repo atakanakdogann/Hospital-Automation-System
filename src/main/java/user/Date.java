@@ -11,6 +11,9 @@ public class Date
         this.time = time;
     }
 
+    public Date() {
+    }
+
     public int getDay()
     {
         return day;

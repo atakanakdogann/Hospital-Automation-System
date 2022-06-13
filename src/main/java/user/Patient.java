@@ -107,7 +107,7 @@ import java.util.Scanner;
             appointArray = appointments.toArray(new Appointments[0]);
 
             for (int i = 0; i < appointArray.length; i++){
-                System.out.println("[" + i +"]: " + appointArray[i].getDoctor().getUserName() + " - Day:" + appointArray[i].getDate().day + ", Hour:" + appointArray[i].getDate().time );
+                System.out.println("[" + i +"]: " + appointArray[i].getDoctor().getUserName() + " - Day:" + appointArray[i].getDate().getDay() + ", Hour:" + appointArray[i].getDate().getTime() );
             }
         }
     }
