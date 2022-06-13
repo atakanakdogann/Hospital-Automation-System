@@ -4,7 +4,6 @@ import java.util.ArrayList;
 /**
  * Employee class is the class for all employees.
  *
- * @author Ahmet Kadir Aksu
  */
 public class Employee extends User {
     private String proficiency;
