@@ -23,6 +23,13 @@ public class User implements Comparable<User>
     {
     }
 
+    public User(String userID){
+        this.userID = userID;
+        this.userPassword = "";
+        this.userType = "";
+        this.userName = "";
+    }
+
     /** Constructor of the User with no parameters.
      *
      */
