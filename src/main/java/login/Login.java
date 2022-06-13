@@ -85,7 +85,7 @@ public class Login
 
         // Check for the user
 
-        if(Database.db.addUser(new Patient(id, password, name, age, weight, height, bloodType)) == false)
+        if(Database.db.addPatient(new Patient(id, password, name, age, weight, height, bloodType)) == false)
         {
             System.out.println("\nError: User already exists");
             return false;

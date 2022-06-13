@@ -13,6 +13,7 @@ public class Main
         menuManager.run();
     }
 
+    /* 
     public static void test()
     {
         // 1000 objects
@@ -193,4 +194,5 @@ public class Main
         System.out.println("Night Shifts - ArrayList         - remove()    - Elapsed Time: " + deltaTimeSec + "s");
 
     }
+    */
 }
