@@ -1,118 +1,255 @@
 package main.java.database;
 
+import main.java.datastructures.AVLTree;
 import main.java.datastructures.BinarySearchTree;
+import main.java.datastructures.KWLinkedList;
 import main.java.user.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
+import java.util.*;
 import java.util.function.BiConsumer;
 
 public class Database
 {
     public static Database db = new Database();
 
-    private ArrayList<String> nightShiftList;
-    private BinarySearchTree<User> userList;
-    private PriorityQueue<String> testResultQueue;
-    private LinkedList<String> appointmentQueue;
+    private BinarySearchTree<User> employees;
+    private AVLTree<User> patients;
+    private KWLinkedList<Appointments> appointments;
+    private HashMap<String, ArrayList<Nurse>> nurses;
 
     public Database()
     {
-        nightShiftList = new ArrayList<>();
-        userList = new BinarySearchTree<>();
-        testResultQueue = new PriorityQueue<>();
-        appointmentQueue = new LinkedList<>();
+        employees = new BinarySearchTree<>();
+        patients = new AVLTree<>();
+        appointments = new KWLinkedList<>();
+        nurses = new HashMap<>();
 
         loadUserList();
-        loadAppointmentQueue();
-        loadNightShiftList();
-        loadTestResultQueue();
     }
 
-    public boolean addUser(User user)
-    {
-        return userList.add(user);
-    }
+    /**
+     * Checks if the given user exists in the system
+     * @param user User to be searched for
+     * @return Returns the user object if the user already exists in the system or null otherwise
+     */
     public User getUser(User user)
     {
-        return userList.find(user);
+        User foundUser = null;
+
+        if((foundUser = employees.find(user)) != null)
+            return foundUser;
+
+        return patients.find(user);
     }
-    public boolean removeUser(User user)
+
+    /**
+     * Adds an employee to the system
+     * @param user User object to be added
+     * @return Returns true if the user with the given id doesn't exist in the system or false otherwise
+     */
+    public boolean addEmployee(User user)
     {
-        return userList.remove(user);
+        if(getUser(user) != null)
+            return false;
+
+        if(employees.add(user))
+        {
+            // If the employee is a nurse, put the nurse in the hashmap
+            if(user instanceof Nurse)
+            {
+                Nurse nurse = (Nurse) user;
+
+                // Check if the proficiency has an array list of nurses. If not create it.
+                if(nurses.get(nurse.getProficiency()) == null)
+                    nurses.put(nurse.getProficiency(), new ArrayList<Nurse>());
+
+                // Add the nurse
+                nurses.get(nurse.getProficiency()).add(nurse);
+            }
+
+            return true;
+        }
+
+        return false;
     }
-    public void displayUsers()
+
+    /**
+     * Checks if the given employee exists in the system
+     * @param user User to be searched for
+     * @return Returns the user object if the user already exists in the system or null otherwise
+     */
+    public User getEmployee(User user)
     {
-        System.out.println("ID  -  Name  -  Password  -  User Type\n");
+        return employees.find(user);
+    }
+
+    /**
+     * Displays employees in ascending order according to their ids
+     */
+    public void displayEmployees()
+    {
+        System.out.println("ID  -  Name  -  Password - User Type - Proficiency\n");
         BiConsumer<User, Integer> displayEmployee = (a, b) ->
         {
             if(a != null)
-                System.out.println(a.getUserID() + "  -  " + a.getUserName() + "  -  " + a.getUserPassword() + "  -  " + a.getUserType());
+                if(a instanceof Employee)
+                    System.out.println(a.getUserID() + "  -  " + a.getUserName() + "  -  " + a.getUserPassword() + "  -  " + a.getUserType() + "  -  " + ((Employee) a).getProficiency());
         };
 
-        userList.preOrderTraverse(displayEmployee);
+        employees.preOrderTraverse(displayEmployee);
     }
 
-    public boolean addAppointment(String patientId)
+    /**
+     * Adds a patient to the system
+     * @param user User object to be added
+     * @return Returns true if the user with the given id doesn't exist in the system or false otherwise
+     */
+    public boolean addPatient(User user)
     {
-        return appointmentQueue.offerLast(patientId);
-    }
-    public String getAppointment(String patientId)
-    {
-        return appointmentQueue.pollFirst();
+        if(getUser(user) != null)
+            return false;
+
+        return patients.add(user);
     }
 
-    public boolean addTestResult(String patientId)
+    /**
+     * Checks if the given patient exists in the system
+     * @param user User to be searched for
+     * @return Returns the user object if the user already exists in the system or null otherwise
+     */
+    public User getPatient(User user)
     {
-        return testResultQueue.offer(patientId);
-    }
-    public String getTestResult(String patientId)
-    {
-        return testResultQueue.poll();
+        return patients.find(user);
     }
 
-    public boolean addNightShift(String employeeId)
+    /**
+     * Displays patients
+     */
+    public void displayPatients()
     {
-        return nightShiftList.add(employeeId);
-    }
-    public String getNightShift(String employeeId)
-    {
-        for(int i = 0; i < nightShiftList.size(); i++)
+        System.out.println("ID  -  Name  -  Password - User Type\n");
+        BiConsumer<User, Integer> displayPatient= (a, b) ->
         {
-            if(employeeId.equals(nightShiftList.get(i)))
+            if(a != null)
+                System.out.println(a.getUserID() + "  -  " + a.getUserName() + "  -  " + a.getUserPassword());
+        };
+
+        patients.preOrderTraverse(displayPatient);
+    }
+
+    /**
+     * Removes a user from the system
+     * @param id Employee id
+     * @return Returns true if the user exists in the system or false otherwise
+     */
+    public boolean removeUser(String id)
+    {
+        User user = employees.find(new User(id, "", "", ""));
+
+        if(user != null)
+        {
+            // If the user is a nurse, delete it from the hashmap as well
+            if(user instanceof Nurse)
             {
-                return nightShiftList.get(i);
+                Nurse nurse = (Nurse) user;
+
+                // Get the array list matching the key
+                ArrayList<Nurse> tempList = nurses.get(nurse.getProficiency());
+
+                // Find and remove the nurse,
+                for(int i = 0; i < tempList.size(); i++)
+                {
+                    if(nurse.getUserID().equals(tempList.get(i).getUserID()))
+                    {
+                        tempList.remove(i);
+                        break;
+                    }
+                }
+            }
+
+            employees.remove(new User(id, "", "", ""));
+
+            return true;
+        }
+
+        return patients.remove(new User(id, "", "", ""));
+    }
+
+    /**
+     * Adds the given appointment to the list
+     * @param appointment Appointment to be added
+     */
+    public void addAppointment(Appointments appointment)
+    {
+        ListIterator<Appointments> iter = appointments.listIterator();
+        while(iter.hasNext())
+        {
+            Appointments temp = iter.next();
+            if(temp.getDate().equals(appointment.getDate()) && temp.getDoctor().compareTo(appointment.getDoctor()) == 0)
+                return;
+        }
+
+        appointments.addLast(appointment);
+        appointments.sort();
+    }
+
+    /**
+     * Removes an appointment from the list
+     * @param appointment
+     */
+    public void removeAppointment(Appointments appointment)
+    {
+        ListIterator<Appointments> iter = appointments.listIterator();
+        while(iter.hasNext())
+        {
+            Appointments temp = iter.next();
+            if(temp.getDate().equals(appointment.getDate()) && temp.getDoctor().compareTo(appointment.getDoctor()) == 0)
+            {
+                iter.remove();
+                return;
+            }
+        }
+    }
+
+    /**
+     * Finds a given appointment
+     * @param appointment Appointment to be found
+     * @return Returns the requested appointment or null if it's not in the list
+     */
+    public Appointments getAppointment(Appointments appointment)
+    {
+        ListIterator<Appointments> iter = appointments.listIterator();
+        while(iter.hasNext())
+        {
+            Appointments temp = iter.next();
+            if(temp.getDate().equals(appointment.getDate()) && temp.getDoctor().compareTo(appointment.getDoctor()) == 0)
+            {
+                return temp;
             }
         }
 
         return null;
     }
-    public boolean removeNightShift(String employeeId)
+
+    private void loadUserList()
     {
-        return nightShiftList.remove(employeeId);
+        addEmployee(new Admin("a", "a" , "a"));
+        addEmployee(new Doctor("d", "d" , "d", Employee.proInternist));
+        addEmployee(new Nurse("n", "n" , "n", Employee.proRadiolog));
+
+        generatePatients(20);
     }
 
-    private boolean loadUserList()
+    private void generatePatients(int count)
     {
-        addUser(new Admin("a", "a" , "a"));
-        //added proficiency data field to subclasses of Employee class
-        addUser(new Doctor("d", "d" , "d", "proficiency"));
-        addUser(new Nurse("n", "n" , "n", "proficiency"));
-        addUser(new Patient("p", "p" , "p", 1, 1, 1, "A"));
+        for(int i = 0; i < count; i++)
+        {
+            StringBuilder sb = new StringBuilder();
 
-        return true;
-    }
-    private boolean loadAppointmentQueue()
-    {
-        return true;
-    }
-    private boolean loadNightShiftList()
-    {
-        return true;
-    }
-    private boolean loadTestResultQueue()
-    {
-        return true;
+            sb.append("p");
+            sb.append(i);
+
+            addPatient(new Patient(sb.toString(), sb.toString() , sb.toString(), 1, 1, 1, "A"));
+        }
     }
 }
