@@ -55,7 +55,6 @@ public class Nurse extends Employee
                 }
             }
         }
-        input.close();
     }
 
     /**
@@ -77,7 +76,6 @@ public class Nurse extends Employee
                 }
             }
         }
-        input.close();
 
     }
 
