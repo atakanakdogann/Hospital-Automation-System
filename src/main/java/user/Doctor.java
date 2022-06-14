@@ -5,6 +5,7 @@ import main.java.HelperClass.PatientRoom;
 import main.java.database.Database;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
@@ -26,7 +27,7 @@ public class Doctor extends Employee{
     /**
      * Queue structure which keeps the doctor's appointments with patients
      */
-    private Queue<Appointments> patientAppointments;
+    private Queue<Appointments> patientAppointments = new LinkedList<>();
 
     public Doctor(){
 
@@ -199,8 +200,10 @@ public class Doctor extends Employee{
         if( patient == null){
             System.err.println("Patient could not found ! ! !");
         } else {
+            input.nextLine();
             System.out.println("Prescription: ");
-            String prescription = input.next();
+            String prescription = input.nextLine();
+            
             writePrescription(patient, prescription);
         }
 

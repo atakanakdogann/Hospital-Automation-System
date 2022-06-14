@@ -15,7 +15,7 @@ import java.util.Scanner;
     private int weight;
     private int height;
     private String bloodType;
-    protected ArrayList<Appointments> appointArray;
+    protected ArrayList<Appointments> appointArray = new ArrayList<>();
     protected Queue<String> symptoms;
     protected ArrayList<String> prescriptions = new ArrayList<>();
     protected ArrayList<Examination> testResults = new ArrayList<>();
