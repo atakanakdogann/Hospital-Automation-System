@@ -2,7 +2,13 @@ package main.java;
 
 
 import main.java.database.Database;
+import main.java.datastructures.Edge;
 import main.java.menu.MenuManager;
+import main.java.user.*;
+import main.java.user.Date;
+
+import java.util.*;
+import java.util.function.BiConsumer;
 
 public class Main
 {
@@ -11,55 +17,36 @@ public class Main
         MenuManager menuManager = new MenuManager();
         menuManager.run();
     }
-    /* 
+/*
     public static void test()
     {
-        // 1000 objects
+        int count = 0;
+        int increment = 5000;
 
-        System.out.println("------------------- 1000 Entries ---------------------\n");
-0
-        fillDB(1000);
+        for(int i = 0; i < 6; i++)
+        {
+            count += increment;
 
-        System.out.println();
+            System.out.println("------------------- " + count + " Entries ---------------------\n");
 
-        // 10000 obejcts
+            fillDB(increment);
 
-        System.out.println("------------------- 10000 Entries --------------------\n");
+            System.out.println();
+        }
 
-        fillDB(10000);
-
-        System.out.println();
-
-        // 100000 obejcts
-
-        System.out.println("------------------- 100000 Entries -------------------\n");
-
-        fillDB(100000);
-
-        System.out.println();
-
-        // 1000000 obejcts
-
-        System.out.println("------------------- 1000000 Entries ------------------\n");
-
-        fillDB(1000000);
-
-        System.out.println();
-
-        System.out.println("------------------- 10000000 Entries -----------------\n");
-
-        fillDB(10000000);
-
-        System.out.println();
     }
-
+*/
+/*
     public static void fillDB(int count)
     {
+        Database.db.initDB();
+        Database.db.initGraph(count);
+
         long firstTime = 0;
         long lastTime = 0;
         double deltaTimeSec = 0;
 
-        String name = "TestEntry";
+        String name = "EmployeeTest";
 
         System.out.println(" Insertion \n");
 
@@ -73,15 +60,37 @@ public class Main
 
             if(i + 1 != count)
             {
-                //Database.db.addUser(sb.toString());
+                Database.db.addEmployee(new Doctor("", "", "", ""));
             }
             else
             {
                 firstTime = System.nanoTime();
-                //Database.db.addUser(sb.toString());
+                Database.db.addEmployee(new Doctor("", "", "", ""));
                 lastTime = System.nanoTime();
                 deltaTimeSec = (lastTime - firstTime) / 1000000000.0;
-                System.out.println("Users        - BST               - add()       - Elapsed Time: " + deltaTimeSec + "s");
+                System.out.println("Employees - BST - addEmployee() - Elapsed Time: " + deltaTimeSec + "s");
+            }
+        }
+
+        name = "PatientTest";
+
+        for (int i = 0; i < count; i++)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.append(name);
+            sb.append(i);
+
+            if(i + 1 != count)
+            {
+                Database.db.addPatient(new Patient("", "", "", 1, 1, 1, ""));
+            }
+            else
+            {
+                firstTime = System.nanoTime();
+                Database.db.addPatient(new Patient("", "", "", 1, 1, 1, ""));
+                lastTime = System.nanoTime();
+                deltaTimeSec = (lastTime - firstTime) / 1000000000.0;
+                System.out.println("Patients - addPatient() - Elapsed Time: " + deltaTimeSec + "s");
             }
         }
 
@@ -95,102 +104,80 @@ public class Main
 
             if(i + 1 != count)
             {
-                Database.db.addAppointment(sb.toString());
+                Database.db.addAppointment(new Appointments(
+                        new Patient("", "", "", 1, 1, 1, ""),
+                        new Doctor("", "", "", ""),
+                        new Date(i, i)));
             }
             else
             {
                 firstTime = System.nanoTime();
-                Database.db.addAppointment(sb.toString());
+                Database.db.addAppointment(new Appointments(
+                        new Patient("", "", "", 1, 1, 1, ""),
+                        new Doctor("", "", "", ""),
+                        new Date(i, i)));
+
                 lastTime = System.nanoTime();
                 deltaTimeSec = (lastTime - firstTime) / 1000000000.0;
-                System.out.println("Appointments - Queue(LinkedList) - offerLast() - Elapsed Time: " + deltaTimeSec + "s");
+                System.out.println("Appointments - addAppointment() - Elapsed Time: " + deltaTimeSec + "s");
             }
         }
 
-        // Test Results
+        // Rooms
 
-        for (int i = 0; i < count; i++)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.append(name);
-            sb.append(i);
-
-            if(i + 1 != count)
-            {
-                Database.db.addTestResult(sb.toString());
-            }
-            else
-            {
-                firstTime = System.nanoTime();
-                Database.db.addTestResult(sb.toString());
-                lastTime = System.nanoTime();
-                deltaTimeSec = (lastTime - firstTime) / 1000000000.0;
-                System.out.println("Test Results - PriorityQueue     - offer()     - Elapsed Time: " + deltaTimeSec + "s");
-            }
-        }
-
-        // Night Shifts
-
-        for (int i = 0; i < count; i++)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.append(name);
-            sb.append(i);
-
-            if(i + 1 != count)
-            {
-                Database.db.addNightShift(sb.toString());
-            }
-            else
-            {
-                firstTime = System.nanoTime();
-                Database.db.addNightShift(sb.toString());
-                lastTime = System.nanoTime();
-                deltaTimeSec = (lastTime - firstTime) / 1000000000.0;
-                System.out.println("Night Shifts - ArrayList         - add()       - Elapsed Time: " + deltaTimeSec + "s");
-            }
-        }
+        firstTime = System.nanoTime();
+        Database.db.assignRoom(new Patient("PatientTest1", "", "", 1,1,1,""));
+        lastTime = System.nanoTime();
+        deltaTimeSec = (lastTime - firstTime) / 1000000000.0;
+        System.out.println("Rooms - assignRoom() - Elapsed Time: " + deltaTimeSec + "s");
 
         System.out.println("\n Query (With non-existent entry) \n");
 
         firstTime = System.nanoTime();
-        //Database.db.getUser("wrongentry");
+        Database.db.getUser(new User("wrongentry", "", "", ""));
         lastTime = System.nanoTime();
         deltaTimeSec = (lastTime - firstTime) / 1000000000.0;
-        System.out.println("Users        - BST               - get()       - Elapsed Time: " + deltaTimeSec + "s");
+        System.out.println("Users - getUser() - Elapsed Time: " + deltaTimeSec + "s");
 
         firstTime = System.nanoTime();
-        Database.db.getAppointment("wrongentry");
+        Database.db.getEmployee(new User("wrongentry", "", "", ""));
         lastTime = System.nanoTime();
         deltaTimeSec = (lastTime - firstTime) / 1000000000.0;
-        System.out.println("Appointments - Queue(LinkedList) - pollFirst() - Elapsed Time: " + deltaTimeSec + "s");
+        System.out.println("Employees - getEmployee() - Elapsed Time: " + deltaTimeSec + "s");
 
         firstTime = System.nanoTime();
-        Database.db.getTestResult("wrongentry");
+        Database.db.getPatient(new User("wrongentry", "", "", ""));
         lastTime = System.nanoTime();
         deltaTimeSec = (lastTime - firstTime) / 1000000000.0;
-        System.out.println("Test Results - PriorityQueue     - poll()      - Elapsed Time: " + deltaTimeSec + "s");
+        System.out.println("Patients - getPatient() - Elapsed Time: " + deltaTimeSec + "s");
 
         firstTime = System.nanoTime();
-        Database.db.getNightShift("wrongentry");
+        Database.db.getAppointment(new Appointments(
+                new Patient("wrongentry", "", "", 1, 1, 1, ""),
+                new Doctor("wrongentry", "", "", ""),
+                new Date(-1, -1)));
+
         lastTime = System.nanoTime();
         deltaTimeSec = (lastTime - firstTime) / 1000000000.0;
-        System.out.println("Night Shifts - ArrayList         - get()       - Elapsed Time: " + deltaTimeSec + "s");
+        System.out.println("Appointments - getAppointments() - Elapsed Time: " + deltaTimeSec + "s");
 
         System.out.println("\n Removal \n");
 
         firstTime = System.nanoTime();
-        //Database.db.removeUser("wrongentry");
+        Database.db.removeUser("wrongentry");
         lastTime = System.nanoTime();
         deltaTimeSec = (lastTime - firstTime) / 1000000000.0;
-        System.out.println("Users        - BST               - remove()    - Elapsed Time: " + deltaTimeSec + "s");
+        System.out.println("Users - removeUser() - Elapsed Time: " + deltaTimeSec + "s");
 
         firstTime = System.nanoTime();
-        Database.db.removeNightShift("wrongentry");
+        Database.db.removeAppointment(new Appointments(
+                new Patient("wrongentry", "", "", 1, 1, 1, ""),
+                new Doctor("wrongentry", "", "", ""),
+                new Date(-1, -1)));
+
         lastTime = System.nanoTime();
         deltaTimeSec = (lastTime - firstTime) / 1000000000.0;
-        System.out.println("Night Shifts - ArrayList         - remove()    - Elapsed Time: " + deltaTimeSec + "s");
-
+        System.out.println("Appointments - removeAppointment() - Elapsed Time: " + deltaTimeSec + "s");
     }
-    */
+*/
 }
