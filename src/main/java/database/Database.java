@@ -19,6 +19,7 @@ public class Database
     private HashMap<String, ArrayList<Nurse>> nurses;
     private ListGraph roomsGraph;
     private ArrayList<PatientRoom> roomList;
+    private SkipListJava<String, Doctor> doctors;
 
     private final static int roomCount = 30;
     private final static int floorCount = 5;
@@ -30,6 +31,8 @@ public class Database
         appointments = new KWLinkedList<>();
         nurses = new HashMap<>();
         roomsGraph = new ListGraph(roomCount, false);
+        roomList = new ArrayList<>();
+        doctors = new SkipListJava<>();
 
         loadUserList();
         initGraph();
@@ -73,6 +76,12 @@ public class Database
 
                 // Add the nurse
                 nurses.get(nurse.getProficiency()).add(nurse);
+            }
+            else if(user instanceof Doctor)
+            {
+                Doctor doctor = (Doctor) user;
+
+                doctors.add(doctor.getUserID(), doctor);
             }
 
             return true;
@@ -174,6 +183,13 @@ public class Database
                         break;
                     }
                 }
+            }
+
+            if(user instanceof Doctor)
+            {
+                Doctor doctor = (Doctor) user;
+
+                doctors.remove(doctor.getUserID());
             }
 
             employees.remove(new User(id, "", "", ""));
