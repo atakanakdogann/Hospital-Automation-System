@@ -15,7 +15,7 @@ import java.util.Scanner;
     private int weight;
     private int height;
     private String bloodType;
-    protected ArrayList<Appointments> appointArray;
+    protected ArrayList<Appointments> appointArray = new ArrayList<>();
     protected Queue<String> symptoms;
     protected ArrayList<String> prescriptions = new ArrayList<>();
     protected ArrayList<Examination> testResults = new ArrayList<>();
@@ -82,20 +82,24 @@ import java.util.Scanner;
       */
     public String getMedicalHistory(){
         String history = new String();
-        history = history + "age: " + getAge();
-        history = history + "\nweight: " + getWeight();
-        history = history + "\nheight: " + getHeight();
-        history = history + "\nblood type: " + getBloodType();
-
+        history = history + "\nAge: " + getAge();
+        history = history + "\nWeight: " + getWeight();
+        history = history + "\nHeight: " + getHeight();
+        history = history + "\nBlood Type: " + getBloodType();
+        history = history + "\nAlergies: \n" + getAllergies();
+        history = history + "\nIllness: \n" + getIllness();
+        history = history + "\nPrescriptions: \n" + getPrescriptions();
+        history = history + "\nTest Results: \n" + getTestResult();
+        history = history + "\nMedicine Requirements: \n" + getMedicineRequirements();
         return history;
     }
      public String getProfile(){
          String history = "";
-         history = history + "name: " + this.getUserName();
+         history = history + "Name: " + this.getUserName();
          history = history + "age: " + getAge();
-         history = history + "\nweight: " + getWeight();
-         history = history + "\nheight: " + getHeight();
-         history = history + "\nblood type: " + getBloodType();
+         history = history + "\nWeight: " + getWeight();
+         history = history + "\nHeight: " + getHeight();
+         history = history + "\nBlood Type: " + getBloodType();
 
          return history;
      }

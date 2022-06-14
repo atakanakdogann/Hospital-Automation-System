@@ -17,7 +17,7 @@ public class Main
         // 1000 objects
 
         System.out.println("------------------- 1000 Entries ---------------------\n");
-
+0
         fillDB(1000);
 
         System.out.println();
