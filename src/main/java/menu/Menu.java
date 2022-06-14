@@ -24,7 +24,6 @@ public class Menu
             if(button.getLabel().equals(buttonList.get(i).getLabel()))
                 return;
         }
-
         buttonList.add(button);
     }
 
