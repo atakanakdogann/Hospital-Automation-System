@@ -266,6 +266,7 @@ public class Database
     {
         addEmployee(new Admin("a", "a" , "a"));
         addEmployee(new Doctor("d", "d" , "d", Employee.proInternist));
+        addEmployee(new Nurse("nurse@hospital.com", "nursePassword" , "Nurse 1", Employee.proInternist));
         addEmployee(new Nurse("n", "n" , "n", Employee.proRadiolog));
         addEmployee(new Patient("p", "p", "osman", 16, 75, 178, "A+"));
 

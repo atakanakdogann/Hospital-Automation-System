@@ -1,5 +1,6 @@
 package main.java.user;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Employee class is the class for all employees.
@@ -66,10 +67,10 @@ public class Employee extends User {
     {
         System.out.println("\nDay \t\t nightShift\n");
 
-        var iter = nightShifts.iterator();
+        Iterator<Boolean> iter = nightShifts.iterator();
         int _day = 1;
         while(iter.hasNext()){
-            var nextEl = iter.next();
+            Boolean nextEl = iter.next();
             if(nextEl)
                 System.out.printf("%d \t\t YES\n", _day++);
             else
@@ -82,10 +83,10 @@ public class Employee extends User {
     {
         System.out.println("\nDay \t\t Working Day\n");
 
-        var iter = workingDays.iterator();
+        Iterator<Boolean> iter = workingDays.iterator();
         int _day = 1;
         while(iter.hasNext()){
-            var nextEl = iter.next();
+            Boolean nextEl = iter.next();
             if(nextEl)
                 System.out.printf("%d \t\t YES\n", _day++);
             else
@@ -98,12 +99,12 @@ public class Employee extends User {
      */
     public void viewForensicCases()
     {
-        var iter = forensicCases.iterator();
+        Iterator<String> iter = forensicCases.iterator();
 
         System.out.println("\nForensic cases:\n");
 
         while(iter.hasNext()){
-            var nextEl = iter.next();
+            String nextEl = iter.next();
             System.out.printf("+%s\n", nextEl);
         }
     }

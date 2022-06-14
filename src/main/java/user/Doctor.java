@@ -185,7 +185,6 @@ public class Doctor extends Employee{
             Date date = new Date(day, time);
             createAppointment(patient, date);
         }
-        input.close();
     }
 
     /**
@@ -204,7 +203,6 @@ public class Doctor extends Employee{
             String prescription = input.next();
             writePrescription(patient, prescription);
         }
-        input.close();
 
     }
 
@@ -222,7 +220,6 @@ public class Doctor extends Employee{
         } else {
             System.out.println("patient history: " + patientHistory(patient));
         }
-        input.close();
     }
 
     /**
@@ -239,7 +236,6 @@ public class Doctor extends Employee{
         } else {
             System.out.println("allergies: " + getAllergies(patient));
         }
-        input.close();
     }
 
     /**
@@ -258,7 +254,6 @@ public class Doctor extends Employee{
             String allergy = input.next();
             setAllergy(patient, allergy);
         }
-        input.close();
     }
 
     /**
@@ -275,7 +270,6 @@ public class Doctor extends Employee{
         } else {
             System.out.println("symptoms: " + getSymptoms(patient));
         }
-        input.close();
     }
 
     /**
@@ -294,7 +288,6 @@ public class Doctor extends Employee{
             String symptom = input.next();
             setSymptoms(patient, symptom);
         }
-        input.close();
     }
 
     /**
@@ -311,7 +304,6 @@ public class Doctor extends Employee{
         } else {
             System.out.println("illnesses: " + getIllness(patient));
         }
-        input.close();
     }
 
     /**
@@ -330,7 +322,6 @@ public class Doctor extends Employee{
             String illness = input.next();
             setIllness(patient, illness);
         }
-        input.close();
     }
 
     /**
@@ -351,7 +342,6 @@ public class Doctor extends Employee{
             String testName = input.next();
             createExamination(patient, proficiency, testName);
         }
-        input.close();
     }
 
     /**
@@ -372,6 +362,5 @@ public class Doctor extends Employee{
             int y = input.nextInt();
             hospitalizePatient(patient, x, y);
         }
-        input.close();
     }
 }

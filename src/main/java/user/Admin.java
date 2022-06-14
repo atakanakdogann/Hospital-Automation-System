@@ -145,7 +145,7 @@ public class Admin extends Employee
         System.out.print("\nEnter the id number of the employee: ");
         String id = scanner.nextLine();
 
-        var emp = Database.db.getEmployee(new User(id, "", "", ""));
+        User emp = Database.db.getEmployee(new User(id, "", "", ""));
         Employee _emp = (Employee) emp;
 
         System.out.println("\n1.Add a working day\n2.Delete a working day(turn into a rest day.)");
@@ -176,7 +176,7 @@ public class Admin extends Employee
         System.out.print("\nEnter the id number of the employee: ");
         String id = scanner.nextLine();
 
-        var emp = Database.db.getEmployee(new User(id));
+        User emp = Database.db.getEmployee(new User(id));
         Employee _emp = (Employee) emp;
 
         System.out.println("\n1.Add a night shift\n2.Delete a night shift");
@@ -207,7 +207,7 @@ public class Admin extends Employee
         System.out.print("\nEnter the id number of the employee: ");
         String id = scanner.nextLine();
 
-        var emp = Database.db.getEmployee(new User(id));
+        User emp = Database.db.getEmployee(new User(id));
         Employee _emp = (Employee) emp;
 
         System.out.println("\nAdd new case:");
@@ -223,7 +223,7 @@ public class Admin extends Employee
         System.out.print("\nEnter the id number of the employee: ");
         String id = scanner.nextLine();
 
-        var emp = Database.db.getEmployee(new User(id));
+        User emp = Database.db.getEmployee(new User(id));
         Employee _emp = (Employee) emp;
 
         _emp.viewForensicCases();

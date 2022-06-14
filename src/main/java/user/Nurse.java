@@ -2,6 +2,8 @@ package main.java.user;
 
 import main.java.HelperClass.Examination;
 import main.java.database.Database;
+
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -45,7 +47,7 @@ public class Nurse extends Employee
             System.err.println("patient could not found");
         } else {
             System.out.println(getProficiency() + " tests that need to be done: ");
-            for (var element : patient.testResults) {
+            for (Examination element : patient.testResults) {
                 if(element.getProficiency().equals(this.getProficiency()) && element.getResult() == null){
                     System.out.println(element.getTestName());
                     System.out.println(element.getTestName() + "result: ");
@@ -55,7 +57,6 @@ public class Nurse extends Employee
                 }
             }
         }
-        input.close();
     }
 
     /**
@@ -71,13 +72,12 @@ public class Nurse extends Employee
             System.err.println("patient could not found");
         } else {
             System.out.println(getProficiency() + " tests that need to be done: ");
-            for (var element : patient.testResults) {
+            for (Examination element : patient.testResults) {
                 if(element.getProficiency().equals(this.getProficiency()) && element.getResult() == null){
                     System.out.println(element.getTestName());
                 }
             }
         }
-        input.close();
 
     }
 
@@ -88,6 +88,11 @@ public class Nurse extends Employee
      */
     public void testPatient(Examination medicalTest, String result)
     {
-        medicalTest.setResult(result);
+        if(!Objects.equals(result, "Positive") && !Objects.equals(result, "Negative")){
+            System.err.println("Test result input is wrong, so its not added!");
+        }
+        else {
+            medicalTest.setResult(result);
+        }
     }
 }
