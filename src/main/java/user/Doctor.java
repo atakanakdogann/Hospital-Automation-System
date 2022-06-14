@@ -54,9 +54,9 @@ public class Doctor extends Employee{
             Database.db.addAppointment(appointment);
             patient.appointArray.add(appointment);
             patientAppointments.add(appointment);
-            System.out.println("appointment created successfully");
+            System.out.println("Appointment created successfully.");
         } else {
-            System.out.println("appointment at given parameters is not suitable");
+            System.out.println("Appointment at given parameters is not suitable ! ! !");
         }
     }
 
@@ -172,15 +172,15 @@ public class Doctor extends Employee{
     public void createAppointment()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("enter day (0-6): ");
+        System.out.println("Enter Day (0-6): ");
         int day = input.nextInt();
-        System.out.println("enter time (0-9): ");
+        System.out.println("Enter Time (0-9): ");
         int time = input.nextInt();
-        System.out.println("enter patient ID: ");
+        System.out.println("Enter Patient ID: ");
         String patientID = input.next();
         Patient patient = findPatient(patientID);
         if( patient == null){
-            System.err.println("patient could not found");
+            System.err.println("Patient could not found ! ! !");
         } else {
             Date date = new Date(day, time);
             createAppointment(patient, date);
@@ -193,13 +193,13 @@ public class Doctor extends Employee{
     public void writePrescription()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("enter patient ID: ");
+        System.out.println("Enter Patient ID: ");
         String patientID = input.next();
         Patient patient = findPatient(patientID);
         if( patient == null){
-            System.err.println("patient could not found");
+            System.err.println("Patient could not found ! ! !");
         } else {
-            System.out.println("prescription: ");
+            System.out.println("Prescription: ");
             String prescription = input.next();
             writePrescription(patient, prescription);
         }
@@ -212,13 +212,13 @@ public class Doctor extends Employee{
     public void viewPatientHistory()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("enter patient ID: ");
+        System.out.println("Enter Patient ID: ");
         String patientID = input.next();
         Patient patient = findPatient(patientID);
         if( patient == null){
-            System.err.println("patient could not found");
+            System.err.println("Patient could not found ! ! !");
         } else {
-            System.out.println("patient history: " + patientHistory(patient));
+            System.out.println("Patient History: " + patientHistory(patient));
         }
     }
 
@@ -228,13 +228,13 @@ public class Doctor extends Employee{
     public void viewAllergies()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("enter patient ID: ");
+        System.out.println("Enter Patient ID: ");
         String patientID = input.next();
         Patient patient = findPatient(patientID);
         if( patient == null){
-            System.err.println("patient could not found");
+            System.err.println("Patient could not found ! ! !");
         } else {
-            System.out.println("allergies: " + getAllergies(patient));
+            System.out.println("Allergies: " + getAllergies(patient));
         }
     }
 
@@ -244,13 +244,13 @@ public class Doctor extends Employee{
     public void addAllergies()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("enter patient ID: ");
+        System.out.println("Enter Patient ID: ");
         String patientID = input.next();
         Patient patient = findPatient(patientID);
         if( patient == null){
-            System.err.println("patient could not found");
+            System.err.println("Patient could not found ! ! !");
         } else {
-            System.out.println("allergy: ");
+            System.out.println("Allergy: ");
             String allergy = input.next();
             setAllergy(patient, allergy);
         }
@@ -262,13 +262,13 @@ public class Doctor extends Employee{
     public void viewSymptoms()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("enter patient ID: ");
+        System.out.println("Enter Patient ID: ");
         String patientID = input.next();
         Patient patient = findPatient(patientID);
         if( patient == null){
-            System.err.println("patient could not found");
+            System.err.println("Patient could not found ! ! !");
         } else {
-            System.out.println("symptoms: " + getSymptoms(patient));
+            System.out.println("Symptoms: " + getSymptoms(patient));
         }
     }
 
@@ -278,13 +278,13 @@ public class Doctor extends Employee{
     public void addSymptoms()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("enter patient ID: ");
+        System.out.println("Enter Patient ID: ");
         String patientID = input.next();
         Patient patient = findPatient(patientID);
         if( patient == null){
-            System.err.println("patient could not found");
+            System.err.println("Patient could not found ! ! !");
         } else {
-            System.out.println("symptom: ");
+            System.out.println("Symptom: ");
             String symptom = input.next();
             setSymptoms(patient, symptom);
         }
@@ -296,13 +296,13 @@ public class Doctor extends Employee{
     public void viewIllness()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("enter patient ID: ");
+        System.out.println("Enter Patient ID: ");
         String patientID = input.next();
         Patient patient = findPatient(patientID);
         if( patient == null){
-            System.err.println("patient could not found");
+            System.err.println("Patient could not found ! ! !");
         } else {
-            System.out.println("illnesses: " + getIllness(patient));
+            System.out.println("Illnesses: " + getIllness(patient));
         }
     }
 
@@ -312,13 +312,13 @@ public class Doctor extends Employee{
     public void addIllness()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("enter patient ID: ");
+        System.out.println("Enter patient ID: ");
         String patientID = input.next();
         Patient patient = findPatient(patientID);
         if( patient == null){
-            System.err.println("patient could not found");
+            System.err.println("Patient could not found ! ! !");
         } else {
-            System.out.println("illness: ");
+            System.out.println("Illness: ");
             String illness = input.next();
             setIllness(patient, illness);
         }
@@ -330,15 +330,15 @@ public class Doctor extends Employee{
     public void enterTestResults()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("enter patient ID: ");
+        System.out.println("Enter patient ID: ");
         String patientID = input.next();
         Patient patient = findPatient(patientID);
         if( patient == null){
-            System.err.println("patient could not found");
+            System.err.println("Patient could not found ! ! !");
         } else {
-            System.out.println("proficiency: ");
+            System.out.println("Proficiency: ");
             String proficiency = input.next();
-            System.out.println("testName: ");
+            System.out.println("TestName: ");
             String testName = input.next();
             createExamination(patient, proficiency, testName);
         }
@@ -350,15 +350,15 @@ public class Doctor extends Employee{
     public void hospitalizePatient()
     {
         Scanner input = new Scanner(System.in);
-        System.out.println("enter patient ID: ");
+        System.out.println("Enter patient ID: ");
         String patientID = input.next();
         Patient patient = findPatient(patientID);
         if( patient == null){
-            System.err.println("patient could not found");
+            System.err.println("Patient could not found ! ! !");
         } else {
-            System.out.println("room number: ");
+            System.out.println("Room number: ");
             int x = input.nextInt();
-            System.out.println("floor: ");
+            System.out.println("Floor: ");
             int y = input.nextInt();
             hospitalizePatient(patient, x, y);
         }
