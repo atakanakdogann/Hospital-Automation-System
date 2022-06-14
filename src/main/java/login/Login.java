@@ -22,7 +22,6 @@ public class Login
 
         System.out.print("Password: ");
         String password = scanner.nextLine();
-
         // Check for the user
 
         User user = Database.db.getUser(new User(id, password, "", ""));

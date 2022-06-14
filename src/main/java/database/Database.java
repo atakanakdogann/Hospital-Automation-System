@@ -122,6 +122,7 @@ public class Database
     public User getPatient(User user)
     {
         return patients.find(user);
+        
     }
 
     /**
