@@ -372,4 +372,15 @@ public class Doctor extends Employee{
             hospitalizePatient(patient, x, y);
         }
     }
+
+            /**
+     * overridden toString method
+     */
+    public String toString(){
+        String theString;
+        theString = "\nName:" + getUserName();
+        theString = theString + "\nProficiency: " + getProficiency();
+
+        return theString;
+    }
 }

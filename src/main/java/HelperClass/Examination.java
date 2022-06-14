@@ -81,9 +81,9 @@ public class Examination {
     public String toString(){
         String theString;
         theString = "" + testName;
-        theString = theString + "\ndoctor: " + doctor.getUserName();
-        theString = theString + "\npatient: " + patient;
-        theString = theString + "\nresult: " + result;
+        theString = theString + "\nDoctor: " + doctor.getUserName();
+        theString = theString + "\nPatient: " + patient;
+        theString = theString + "\nResult: " + result;
 
         return theString;
     }

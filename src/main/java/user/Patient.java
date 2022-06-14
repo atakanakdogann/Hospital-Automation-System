@@ -6,8 +6,10 @@ import main.java.database.Database;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.jar.Attributes.Name;
 
  public class Patient extends User{
     private PatientRoom room;
@@ -16,7 +18,7 @@ import java.util.Scanner;
     private int height;
     private String bloodType;
     protected ArrayList<Appointments> appointArray = new ArrayList<>();
-    protected Queue<String> symptoms;
+    protected Queue<String> symptoms = new LinkedList<>();
     protected ArrayList<String> prescriptions = new ArrayList<>();
     protected ArrayList<Examination> testResults = new ArrayList<>();
     protected ArrayList<String> medicineRequirements = new ArrayList<>();
@@ -297,5 +299,19 @@ import java.util.Scanner;
       */
     public void addSymptom(String symptom) {
         symptoms.add(symptom);
+    }
+
+        /**
+     * overridden toString method
+     */
+    public String toString(){
+        String theString;
+        theString = "\nName:" + getUserName();
+        theString = theString + "\nAge: " + getAge();
+        theString = theString + "\nWeight: " + getWeight();
+        theString = theString + "\nHeight: " + getHeight();
+        theString = theString + "\nBlood Type: " + getBloodType();
+
+        return theString;
     }
 }
