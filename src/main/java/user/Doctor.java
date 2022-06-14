@@ -253,9 +253,10 @@ public class Doctor extends Employee{
         if( patient == null){
             System.err.println("Patient could not found ! ! !");
         } else {
+            input.nextLine();
             System.out.println("Allergy: ");
             String allergy = input.nextLine();
-            input.nextLine();
+
             setAllergy(patient, allergy);
         }
     }
@@ -288,9 +289,10 @@ public class Doctor extends Employee{
         if( patient == null){
             System.err.println("Patient could not found ! ! !");
         } else {
+            input.nextLine();
             System.out.println("Symptom: ");
             String symptom = input.nextLine();
-            input.nextLine();
+
             setSymptoms(patient, symptom);
         }
     }
@@ -323,9 +325,10 @@ public class Doctor extends Employee{
         if( patient == null){
             System.err.println("Patient could not found ! ! !");
         } else {
+            input.nextLine();
             System.out.println("Illness: ");
             String illness = input.nextLine();
-            input.nextLine();
+
             setIllness(patient, illness);
         }
     }
