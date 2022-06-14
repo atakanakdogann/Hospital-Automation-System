@@ -21,12 +21,20 @@ public class Nurse extends Employee
         super(ID, pass, name, User.userTypeNurse, proficiency);
     }
 
+    /**
+     * find patient with given patientID then return it
+     * @param patientID patient's national identity number
+     * @return the found patient
+     */
     private Patient findPatient(String patientID){
         User tempPatient = new User(patientID);
         Patient patient = (Patient) Database.db.getPatient(tempPatient);
         return patient;
     }
 
+    /**
+     * search the test and enter
+     */
     public void testPatient()
     {
         Scanner input = new Scanner(System.in);
@@ -36,11 +44,13 @@ public class Nurse extends Employee
         if(patient == null){
             System.err.println("patient could not found");
         } else {
-            for (int i = 0; i < patient.testResults.size(); i++) {
-                var element = patient.testResults.get(i); 
+            System.out.println(getProficiency() + " tests that need to be done: ");
+            for (var element : patient.testResults) {
                 if(element.getProficiency().equals(this.getProficiency()) && element.getResult() == null){
+                    System.out.println(element.getTestName());
                     System.out.println(element.getTestName() + "result: ");
                     String result = input.next();
+                    element.setResult(result);
                     testPatient(element, result);
                 }
             }
@@ -60,10 +70,10 @@ public class Nurse extends Employee
         if(patient == null){
             System.err.println("patient could not found");
         } else {
-            for (int i = 0; i < patient.testResults.size(); i++) {
-                var element = patient.testResults.get(i); 
-                if(element.getProficiency().equals(this.getProficiency()) && element.getResult() != null){
-                    System.out.println(element.getTestName() + "done");
+            System.out.println(getProficiency() + " tests that need to be done: ");
+            for (var element : patient.testResults) {
+                if(element.getProficiency().equals(this.getProficiency()) && element.getResult() == null){
+                    System.out.println(element.getTestName());
                 }
             }
         }
@@ -73,8 +83,8 @@ public class Nurse extends Employee
 
     /**
      * Executes test phases and assigns the test results to the patient
-     * @param medicalTest
-     * @param result
+     * @param medicalTest current test
+     * @param result current test's result
      */
     public void testPatient(Examination medicalTest, String result)
     {

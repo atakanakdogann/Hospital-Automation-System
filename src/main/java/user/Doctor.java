@@ -9,6 +9,8 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
 
+import javax.xml.crypto.Data;
+
 public class Doctor extends Employee{
     /**
      * Sees the patient appointments
@@ -47,8 +49,15 @@ public class Doctor extends Employee{
      * @param date
      */
     public void createAppointment(Patient patient, Date date){
-        Appointments creation = new Appointments(patient, this, date);
-        Database.db.addAppointment(creation);
+        Appointments appointment = new Appointments(patient, this, date);
+        if(Database.db.getAppointment(appointment) == null){
+            Database.db.addAppointment(appointment);
+            patient.appointArray.add(appointment);
+            patientAppointments.add(appointment);
+            System.out.println("appointment created successfully");
+        } else {
+            System.out.println("appointment at given parameters is not suitable");
+        }
     }
 
     /**
@@ -146,12 +155,20 @@ public class Doctor extends Employee{
         patient.setRoom(patientRoom);
     }
 
+    /**
+     * find patient with given patientID then return it
+     * @param patientID patient's national identity number
+     * @return the found patient
+     */
     private Patient findPatient(String patientID){
         User tempPatient = new User(patientID);
         Patient patient = (Patient) Database.db.getPatient(tempPatient);
         return patient;
     }
 
+    /**
+     * create an appointment with the found patient
+     */
     public void createAppointment()
     {
         Scanner input = new Scanner(System.in);
@@ -166,14 +183,14 @@ public class Doctor extends Employee{
             System.err.println("patient could not found");
         } else {
             Date date = new Date(day, time);
-            Appointments appointment = new Appointments(patient, this, date);
-            Database.db.addAppointment(appointment);
-            patientAppointments.add(appointment);
-            System.out.println("appointment created successfully");
+            createAppointment(patient, date);
         }
         input.close();
     }
 
+    /**
+     * write a prescription to the found patient
+     */
     public void writePrescription()
     {
         Scanner input = new Scanner(System.in);
@@ -191,6 +208,9 @@ public class Doctor extends Employee{
 
     }
 
+    /**
+     * display patient's medical history on the console
+     */
     public void viewPatientHistory()
     {
         Scanner input = new Scanner(System.in);
@@ -205,6 +225,9 @@ public class Doctor extends Employee{
         input.close();
     }
 
+    /**
+     * display patient's allergies on the console
+     */
     public void viewAllergies()
     {
         Scanner input = new Scanner(System.in);
@@ -219,6 +242,9 @@ public class Doctor extends Employee{
         input.close();
     }
 
+    /**
+     * add new allergy information to the patient 
+     */
     public void addAllergies()
     {
         Scanner input = new Scanner(System.in);
@@ -235,6 +261,9 @@ public class Doctor extends Employee{
         input.close();
     }
 
+    /**
+     * display patient's symptoms on the console
+     */
     public void viewSymptoms()
     {
         Scanner input = new Scanner(System.in);
@@ -249,6 +278,9 @@ public class Doctor extends Employee{
         input.close();
     }
 
+    /**
+     * add a new symptom to the patient
+     */
     public void addSymptoms()
     {
         Scanner input = new Scanner(System.in);
@@ -265,6 +297,9 @@ public class Doctor extends Employee{
         input.close();
     }
 
+    /**
+     * display illnesses of patient's on the console
+     */
     public void viewIllness()
     {
         Scanner input = new Scanner(System.in);
@@ -279,6 +314,9 @@ public class Doctor extends Employee{
         input.close();
     }
 
+    /**
+     * add new illness to the patient
+     */
     public void addIllness()
     {
         Scanner input = new Scanner(System.in);
@@ -295,6 +333,9 @@ public class Doctor extends Employee{
         input.close();
     }
 
+    /**
+     * create examination for patient
+     */
     public void enterTestResults()
     {
         Scanner input = new Scanner(System.in);
@@ -313,6 +354,9 @@ public class Doctor extends Employee{
         input.close();
     }
 
+    /**
+     * hospitalize patient to the hospital with floor and room number entries
+     */
     public void hospitalizePatient()
     {
         Scanner input = new Scanner(System.in);

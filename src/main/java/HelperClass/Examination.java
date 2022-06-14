@@ -74,6 +74,10 @@ public class Examination {
     public void setResult(String result) {
         this.result = result;
     }
+
+    /**
+     * overridden toString method
+     */
     public String toString(){
         String theString;
         theString = "" + testName;
