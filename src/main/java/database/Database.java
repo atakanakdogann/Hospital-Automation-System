@@ -435,7 +435,43 @@ public class Database
                 roomsGraph.insert(new Edge(src, dst));
             }
         }
+    }
 
-        roomsGraph.toString();
+    public void initGraph(int roomCount)
+    {
+        roomsGraph = new ListGraph(roomCount, false);
+
+        for(int r = 0; r < floorCount; r++)
+        {
+            for(int j = 0; j < roomCount / floorCount; j++)
+            {
+                roomList.add(new PatientRoom(j, r, null));
+
+                if(j != 0)
+                {
+                    int src = (r * (roomCount / floorCount)) + j;
+                    int dst = src - 1;
+                    roomsGraph.insert(new Edge(src, dst));
+                }
+            }
+
+            if(r != 0)
+            {
+                int src = r * (roomCount / floorCount);
+                int dst = (r - 1) * (roomCount / floorCount);
+                roomsGraph.insert(new Edge(src, dst));
+            }
+        }
+    }
+
+    public void initDB()
+    {
+        employees = new BinarySearchTree<>();
+        patients = new AVLTree<>();
+        appointments = new KWLinkedList<>();
+        nurses = new HashMap<>();
+        roomsGraph = new ListGraph(roomCount, false);
+        roomList = new ArrayList<>();
+        doctors = new SkipListJava<>();
     }
 }
