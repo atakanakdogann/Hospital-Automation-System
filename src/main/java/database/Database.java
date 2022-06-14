@@ -1,12 +1,11 @@
 package main.java.database;
 
-import main.java.datastructures.AVLTree;
-import main.java.datastructures.BinarySearchTree;
-import main.java.datastructures.KWLinkedList;
-import main.java.datastructures.SkipListJava;
+import main.java.HelperClass.PatientRoom;
+import main.java.datastructures.*;
 
 import main.java.user.*;
 
+import javax.swing.*;
 import java.util.*;
 import java.util.function.BiConsumer;
 
@@ -18,6 +17,11 @@ public class Database
     private AVLTree<User> patients;
     private KWLinkedList<Appointments> appointments;
     private HashMap<String, ArrayList<Nurse>> nurses;
+    private ListGraph roomsGraph;
+    private ArrayList<PatientRoom> roomList;
+
+    private final static int roomCount = 30;
+    private final static int floorCount = 5;
 
     public Database()
     {
@@ -25,8 +29,10 @@ public class Database
         patients = new AVLTree<>();
         appointments = new KWLinkedList<>();
         nurses = new HashMap<>();
+        roomsGraph = new ListGraph(roomCount, false);
 
         loadUserList();
+        initGraph();
     }
 
     /**
@@ -262,6 +268,111 @@ public class Database
         return appointmentArray;
     }
 
+    public int findEmptyRoom()
+    {
+        Queue < Integer > theQueue = new LinkedList < Integer > ();
+        int start = 0;
+
+        // Declare array identified and
+        // initialize its elements to false.
+        boolean[] identified = new boolean[roomsGraph.getNumV()];
+        /* Mark the start vertex as identified and insert it
+        into the queue */
+        identified[start] = true;
+        theQueue.offer(start);
+
+        /* While the queue is not empty */
+        while (!theQueue.isEmpty()) {
+         /* Take a vertex, current, out of the queue.
+       (Begin visiting current). */
+            int current = theQueue.remove();
+
+            if(roomList.get(current).getPatient() == null)
+                return current;
+
+            /* Examine each vertex, neighbor, adjacent to current. */
+            Iterator < Edge > itr = roomsGraph.edgeIterator(current);
+            while (itr.hasNext()) {
+                Edge edge = itr.next();
+                int neighbor = edge.getDest();
+                // If neighbor has not been identified
+                if (!identified[neighbor]) {
+                    // Mark it identified.
+                    identified[neighbor] = true;
+
+                    // Place it into the queue.
+                    theQueue.offer(neighbor);
+                }
+            }
+            // Finished visiting current.
+        }
+
+        return -1;
+    }
+
+    public boolean assignRoom(Patient patient)
+    {
+        if(patient == null)
+            return false;
+
+        if(patients.contains(patient) == false)
+            return false;
+
+        int roomId = findEmptyRoom();
+
+        if(roomId == -1)
+            return false;
+
+        roomList.get(roomId).setPatient(patient);
+
+        return true;
+    }
+
+    public boolean removePatientFromRoom(Patient patient)
+    {
+        Queue < Integer > theQueue = new LinkedList < Integer > ();
+        int start = 0;
+
+        // Declare array identified and
+        // initialize its elements to false.
+        boolean[] identified = new boolean[roomsGraph.getNumV()];
+        /* Mark the start vertex as identified and insert it
+        into the queue */
+        identified[start] = true;
+        theQueue.offer(start);
+
+        /* While the queue is not empty */
+        while (!theQueue.isEmpty()) {
+         /* Take a vertex, current, out of the queue.
+       (Begin visiting current). */
+            int current = theQueue.remove();
+
+            if(roomList.get(current).getPatient().equals(patient))
+            {
+                roomList.get(current).setPatient(null);
+                return true;
+            }
+
+            /* Examine each vertex, neighbor, adjacent to current. */
+            Iterator < Edge > itr = roomsGraph.edgeIterator(current);
+            while (itr.hasNext()) {
+                Edge edge = itr.next();
+                int neighbor = edge.getDest();
+                // If neighbor has not been identified
+                if (!identified[neighbor]) {
+                    // Mark it identified.
+                    identified[neighbor] = true;
+
+                    // Place it into the queue.
+                    theQueue.offer(neighbor);
+                }
+            }
+            // Finished visiting current.
+        }
+
+        return false;
+    }
+
     private void loadUserList()
     {
         addEmployee(new Admin("a", "a" , "a"));
@@ -283,5 +394,32 @@ public class Database
 
             addPatient(new Patient(sb.toString(), sb.toString() , sb.toString(), 1, 1, 1, "A"));
         }
+    }
+
+    private void initGraph()
+    {
+        for(int r = 0; r < floorCount; r++)
+        {
+            for(int j = 0; j < roomCount / floorCount; j++)
+            {
+                roomList.add(new PatientRoom(j, r, null));
+
+                if(j != 0)
+                {
+                    int src = (r * (roomCount / floorCount)) + j;
+                    int dst = src - 1;
+                    roomsGraph.insert(new Edge(src, dst));
+                }
+            }
+
+            if(r != 0)
+            {
+                int src = r * (roomCount / floorCount);
+                int dst = (r - 1) * (roomCount / floorCount);
+                roomsGraph.insert(new Edge(src, dst));
+            }
+        }
+
+        roomsGraph.toString();
     }
 }
