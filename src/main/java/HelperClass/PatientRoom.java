@@ -41,4 +41,10 @@ public class PatientRoom {
     public Patient getPatient() {
         return patient;
     }
+
+    /**
+     * Setter method for patient
+     * @param patient Patient
+     */
+    public void setPatient(Patient patient) { this.patient = patient; }
 }
