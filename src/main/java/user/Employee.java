@@ -197,6 +197,17 @@ public class Employee extends User {
      */
     public void setNightShift(boolean bool, int day) {
         nightShifts.set(day, bool);
+        if (this.getUserType().equals("Doctor")){
+            for(int i = 20; i <24; i++){
+                Appointments newAppoint = new Appointments();
+                Patient newPatient = new Patient();
+                newAppoint.setPatient(newPatient);
+                newAppoint.setDoctor((Doctor) this);
+                Date newDate = new Date (day, i);
+                newAppoint.setDate(newDate);
+                Database.db.addAppointment(newAppoint);
+            }
+        }
     }
 
     /**
