@@ -1,4 +1,7 @@
 package main.java.user;
+import main.java.database.Database;
+
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -137,6 +140,18 @@ public class Employee extends User {
      */
     public void setWorkingDay(boolean bool, int day) {
         workingDays.set(day, bool);
+        if (this.getUserType().equals("Doctor")){
+            for(int i = 0; i <10; i++){
+                Appointments newAppoint = new Appointments();
+                Patient newPatient = new Patient();
+                newAppoint.setPatient(newPatient);
+                newAppoint.setDoctor((Doctor) this);
+                Date newDate = new Date (day, i);
+                newAppoint.setDate(newDate);
+                Database.db.addAppointment(newAppoint);
+            }
+        }
+
 
     }
 

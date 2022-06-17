@@ -262,7 +262,12 @@ public class Database
         while(iter.hasNext())
         {
             Appointments temp = iter.next();
-            if(temp.getPatient().equals(patient))
+            if(patient == null){
+                if (temp.getPatient() == null){
+                    appointmentArray.add(temp);
+                }
+            }
+            else if(temp.getPatient().equals(patient))
             {
                 appointmentArray.add(temp);
             }

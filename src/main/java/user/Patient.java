@@ -32,6 +32,13 @@ import java.util.jar.Attributes.Name;
         this.height = height;
         this.bloodType = bloodType;
     }
+     public Patient() {
+         super("NULL", "NULL", "NULL", User.userTypePatient);
+         this.age = 0;
+         this.weight = 0;
+         this.height = 0;
+         this.bloodType = "NULL";
+     }
 
     /**
      * this method assign a hospital room for patient
@@ -108,7 +115,7 @@ import java.util.jar.Attributes.Name;
 
     public void viewAppointments() {
         loadAppointment();
-        if (appointArray.isEmpty()) {
+        if (appointArray == null || appointArray.isEmpty()) {
             System.out.println("\nYou don't have any Appointments.\n");
         } else {
             for (int i = 0; i < appointArray.size(); i++) {
@@ -121,7 +128,7 @@ import java.util.jar.Attributes.Name;
         Doctor selectedDoctor;
         Scanner scan = new Scanner(System.in);
         /* Get no patient appointments */
-        ArrayList<Appointments> freeAppointments = Database.db.getAppointment((Patient) null);
+        ArrayList<Appointments> freeAppointments = Database.db.getAppointment(new Patient());
         /* Get doctors who have an empty appointment */
         ArrayList<Doctor> doctors = new ArrayList<>();
         for (Appointments freeAppointment : freeAppointments) {
@@ -148,6 +155,7 @@ import java.util.jar.Attributes.Name;
             if (selectIndex >= 0 && selectIndex < freeAppointments.size()) {
                 freeAppointments.get(selectIndex).setPatient(this);
                 System.out.println("\nAppointment created successfully.");
+                loadAppointment();
             } else {
                 System.out.println("\nFailed to create appointment.");
             }
