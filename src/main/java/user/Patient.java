@@ -169,9 +169,9 @@ import java.util.jar.Attributes.Name;
             System.out.print("Select a Appointment: ");
             Scanner scan = new Scanner(System.in);
             int selectIndex = scan.nextInt();
-            if (selectIndex > 0 && selectIndex < appointArray.size()){
+            if (selectIndex >= 0 && selectIndex < appointArray.size()){
                 Appointments deletedAppointment = Database.db.getAppointment(appointArray.get(selectIndex));
-                deletedAppointment.setPatient((Patient)null);
+                deletedAppointment.setPatient(new Patient());
                 System.out.println("\nAppointment deleted successfully.");
             } else {
                 System.out.println("\nAppointment Deleting is failed");
