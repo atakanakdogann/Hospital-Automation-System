@@ -187,7 +187,7 @@ public class ActionScreen
         if(!(user instanceof Doctor))
             return;
 
-        //((Doctor) user).hospitalizePatient();
+        ((Doctor) user).hospitalizePatient();
     }
 
     public void nurseTestPatient(User user)
