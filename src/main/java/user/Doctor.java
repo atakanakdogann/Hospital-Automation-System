@@ -148,12 +148,28 @@ public class Doctor extends Employee{
     /**
      * give a room at given location to hospitalize patient
      * @param patient patient to hospitalize
-     * @param x x-axis location
-     * @param y y-axis location
      */
-    public void hospitalizePatient(Patient patient, int x, int y){
-        PatientRoom patientRoom = new PatientRoom(x, y, patient);
-        patient.setRoom(patientRoom);
+    public void hospitalizePatient(Patient patient){
+        if(patient == null)
+            return;
+
+        PatientRoom room = Database.db.assignRoom(patient);
+
+        if(room == null)
+        {
+            System.out.println("Error: There is no available room currently");
+            return;
+        }
+
+        if(patient.getRoom() != null)
+        {
+            System.out.println("Error: Patient is already hospitalized");
+            return;
+        }
+
+        patient.setRoom(room);
+
+        System.out.println("Patient " + patient.getUserID() + " is assigned to a room. Floor: " + room.getY() + " Number: " + room.getX());
     }
 
     /**
@@ -365,11 +381,7 @@ public class Doctor extends Employee{
         if( patient == null){
             System.err.println("Patient could not found ! ! !");
         } else {
-            System.out.println("Room number: ");
-            int x = input.nextInt();
-            System.out.println("Floor: ");
-            int y = input.nextInt();
-            hospitalizePatient(patient, x, y);
+            hospitalizePatient(patient);
         }
     }
 

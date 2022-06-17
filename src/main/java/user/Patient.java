@@ -31,6 +31,7 @@ import java.util.jar.Attributes.Name;
         this.weight = weight;
         this.height = height;
         this.bloodType = bloodType;
+        room = null;
     }
      public Patient() {
          super("NULL", "NULL", "NULL", User.userTypePatient);
@@ -38,6 +39,7 @@ import java.util.jar.Attributes.Name;
          this.weight = 0;
          this.height = 0;
          this.bloodType = "NULL";
+         room = null;
      }
 
     /**
@@ -309,7 +311,12 @@ import java.util.jar.Attributes.Name;
         symptoms.add(symptom);
     }
 
-        /**
+     public PatientRoom getRoom()
+     {
+         return room;
+     }
+
+     /**
      * overridden toString method
      */
     public String toString(){
