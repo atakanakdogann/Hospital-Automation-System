@@ -153,7 +153,7 @@ public class Admin extends Employee
 
         int selection = scanner.nextInt();
 
-        System.out.print("\nday(1 to 7, 1 is monday): ");
+        System.out.print("\nday(0 to 6, 0 is monday): ");
         int _day = scanner.nextInt();
 
         switch (selection) {
@@ -184,7 +184,7 @@ public class Admin extends Employee
 
         int selection = scanner.nextInt();
 
-        System.out.print("\nday(1 to 7, 1 is monday): ");
+        System.out.print("\nday(0 to 6, 0 is monday): ");
         int _day = scanner.nextInt();
 
         switch (selection) {
