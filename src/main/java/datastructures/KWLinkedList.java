@@ -106,7 +106,6 @@ public class KWLinkedList< E extends Comparable<E>> {
 
       while(temp != null)
       {
-          print();
           sortBack(temp, temp.next);
           temp = temp.next;
       }
