@@ -376,7 +376,7 @@ public class Doctor extends Employee{
     {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter patient ID: ");
-        String patientID = input.next();
+        String patientID = input.nextLine();
         Patient patient = findPatient(patientID);
         if( patient == null){
             System.err.println("Patient could not found ! ! !");
