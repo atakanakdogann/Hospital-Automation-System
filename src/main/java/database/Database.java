@@ -331,22 +331,22 @@ public class Database
         return -1;
     }
 
-    public boolean assignRoom(Patient patient)
+    public PatientRoom assignRoom(Patient patient)
     {
         if(patient == null)
-            return false;
+            return null;
 
         if(patients.contains(patient) == false)
-            return false;
+            return null;
 
         int roomId = findEmptyRoom();
 
         if(roomId == -1)
-            return false;
+            return null;
 
         roomList.get(roomId).setPatient(patient);
 
-        return true;
+        return roomList.get(roomId);
     }
 
     public boolean removePatientFromRoom(Patient patient)
