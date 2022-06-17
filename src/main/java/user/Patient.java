@@ -154,7 +154,7 @@ import java.util.jar.Attributes.Name;
             /* Select Appointment that the selected doctor has */
             System.out.print("\nSelect a date: ");
             selectIndex = scan.nextInt();
-            if (selectIndex >= 0 && selectIndex < freeAppointments.size()) {
+            if (selectIndex >= 0 && selectIndex < freeAppointments.size() && selectedDoctor.equals(freeAppointments.get(selectIndex).getDoctor())) {
                 freeAppointments.get(selectIndex).setPatient(this);
                 System.out.println("\nAppointment created successfully.");
                 loadAppointment();
